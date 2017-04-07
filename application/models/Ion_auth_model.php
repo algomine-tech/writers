@@ -2222,8 +2222,17 @@ class Ion_auth_model extends CI_Model
 
 		return TRUE;
 	}
+	public function grouplist()
+	{
+	    $query = $this->db->get('groups');
 
+	    foreach ($query->result() as $row)
+	            {
+	                  $listArray[$row->id] = $row->name;                
+	            }               
 
+	    return $listArray;
+	}
 
 	protected function _filter_data($table, $data)
 	{

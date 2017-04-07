@@ -55,7 +55,7 @@ $countries = array("af"=>"Afghanistan","ax"=>"Aland Islands","al"=>"Albania","dz
                 <div class="row">
                   <div class="col-md-12">
                     <!-- form login -->
-                    <form class="form-horizontal" method="post" action="<?= site_url('auth/create_user') ?>">
+                    <form class="form-horizontal" method="post" action="<?= site_url('auth/create_user/') ?>">
             <div class="box box-success">
         <div class="box-body">
         
@@ -100,21 +100,14 @@ $countries = array("af"=>"Afghanistan","ax"=>"Aland Islands","al"=>"Albania","dz
                 <label for="phone">Phone</label>
                 <input type="number" name="phonec" id="phonec" class='form-control' placeholder="254712345678">
                 </div>
-               <!-- <div class="form-group">
-               <label for="phone">Country</label>
-               <?php //$attributes = 'id="country" class="form-control" onchange="change_country(this.value);"';
-                //echo form_dropdown('location', $country, set_value('country'), $attributes); ?>
-            </div> -->
-            <!-- <div class="form-group">
-               <label for="phone">State</label>
-               <?php //$attributes = 'id="state" class="form-control"';
-                //echo form_dropdown('state', $state, set_value('state'), $attributes); ?>
-            </div> -->
-            <!-- <div class="form-group">
-               <label for="phone">City</label>
-               <?php //$attributes = 'id="city" class="form-control"';
-                //echo form_dropdown('city', $city, set_value('country'), $attributes); ?>
-            </div> -->
+                <div class="form-group">
+                <label for="cat">Group</label>
+                 <select name="cat" class="form-control">
+                  <option value="2">Writer</option>
+                  <option value="3">Editor A</option>
+                  <option value="4">Editor B</option>
+                </select> 
+                </div> 
             <div class="form-group">
                   <label for="password">Password<span style="color:red">*</span></label>
                     <?php echo form_input($password);?><span><?= form_error('password'); ?></span>

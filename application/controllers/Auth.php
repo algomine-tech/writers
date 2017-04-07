@@ -436,12 +436,12 @@ class Auth extends CI_Controller {
         // {
         //     redirect('auth', 'refresh');
         // }
-        $this->data['country'] = $this->country_model->get_country();
-        $this->data['state'] = $this->country_model->get_state();
-        $this->data['city'] = $this->country_model->get_city();
+        //$group = $this->uri->segment(3);
+        //$this->data['group'] = $group;
         $tables = $this->config->item('tables','ion_auth');
         $identity_column = $this->config->item('identity','ion_auth');
         $this->data['identity_column'] = $identity_column;
+        $this->data["listGroups"] = $this->ion_auth->grouplist();
 
         // validate form input
         $this->form_validation->set_rules('first_name', 'surname', 'required');
@@ -456,7 +456,6 @@ class Auth extends CI_Controller {
             $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique[' . $tables['users'] . '.email]');
         }
         $this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'trim');
-        $this->form_validation->set_rules('company', $this->lang->line('create_user_validation_company_label'), 'trim');
         $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
         $this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
 
@@ -470,11 +469,11 @@ class Auth extends CI_Controller {
                 'first_name' => $this->input->post('first_name'),
                 'last_name'  => $this->input->post('last_name'),
                 'location'   => $this->input->post('location'),
-                'phone'      => $this->input->post('phonec')
-
+                'phone'      => $this->input->post('phonec'),
             );
+            $group = array($this->input->post('cat'));
         }
-        if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data))
+        if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data, $group))
         {
             // check to see if we are creating the user
             // redirect them back to the admin page
@@ -509,14 +508,6 @@ class Auth extends CI_Controller {
                 'type'  => 'text',
                 'placeholder'=>'Enter email',
                 'value' => $this->form_validation->set_value('email'),
-                'class' => 'form-control'
-            );
-            $this->data['phone'] = array(
-                'name'  => 'phone',
-                'id'    => 'phone',
-                'type'  => 'text',
-                'placeholder'=>'Insert your phone number',
-                'value' => $this->form_validation->set_value('phone'),
                 'class' => 'form-control'
             );
             $this->data['password'] = array(
