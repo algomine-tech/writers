@@ -53,7 +53,19 @@ $countries = array("af"=>"Afghanistan","ax"=>"Aland Islands","al"=>"Albania","dz
             <div class="panel panel-md">
               <div class="panel-body">
                 <div class="row">
-                  <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4">
+                      <p class="text-right"><a href="#"></a></p>
+                    </div>
+                  </div>
+
+                  <h2 class="title"><a href="#">Register For A Job</a></h2>
+                  <hr>
+                  <div class="job-meta">
+          </div>
+                  <div class="col-md-offset-2 col-md-8">
                     <!-- form login -->
                     <form class="form-horizontal" method="post" action="<?= site_url('auth/create_user/') ?>">
             <div class="box box-success">
