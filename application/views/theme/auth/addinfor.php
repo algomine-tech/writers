@@ -4,7 +4,9 @@
         <div class="bg-color1 block-section line-bottom">
           <div class="container">
             <h2 class="text-center">Additional Information<br/>
-              <small>Hi,Mr.<?= $users->last_name ?> Please add some information below before you Continue.</small></h2>
+              <small>Hi,Mr.<?php foreach ($users as $user) {
+               echo $user->last_name ;
+               }?> Please add some information below before you Continue.</small></h2>
             <div class="white-space-20"></div>
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
@@ -12,11 +14,18 @@
                 <form class="form-horizontal" method="post" action="<?= site_url('auth/addinfor') ?>">
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control "  placeholder="Enter Job Title" value="<?= $users->first_name ?>">
+                    <input type="text" class="form-control "  placeholder="Enter Job Title" value="<?php foreach ($users as $user) {
+               echo $user->first_name." ";
+               echo $user->last_name ;
+               }?>">
+               <input type="hidden" name="id" value="<?php foreach ($users as $user) {
+               echo $user->id ;
+               }?>">
                   </div>
                   <div class="form-group">
                 <label for="cat">Education Level</label>
                  <select name="cat" class="form-control">
+                  <option value="">-- Select Education Level --</option>
                   <option value="high_school">High School</option>
                   <option value="University">University</option>
                   <option value="Masters">Masters</option>
@@ -26,14 +35,14 @@
                   <div class="form-group">
                     <label>Tell us why you are better</label>
                     <div class="color-white-mute"><small>Describe the responsibilities of this job, Your work experience, skills.</small></div>
-                    <textarea class="form-control" rows="6" placeholder="Enter Job Description"></textarea>
+                    <textarea class="form-control" rows="6" name="desc" placeholder="Enter Job Description"></textarea>
                   </div>
                   <div class="form-group">
                     <label>Your Resume</label>
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-default btn-theme btn-file">
-                          File  <input type="file" >
+                          File  <input type="file" name="resume" >
                         </span>
                       </span>
                       <input type="text" class="form-control form-flat" readonly>
@@ -45,7 +54,7 @@
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-default btn-theme btn-file">
-                          File  <input type="file" >
+                          File  <input type="file" name="cert" >
                         </span>
                       </span>
                       <input type="text" class="form-control form-flat" readonly>
@@ -57,7 +66,7 @@
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-default btn-theme btn-file">
-                          File  <input type="file" >
+                          File  <input type="file" name="job" >
                         </span>
                       </span>
                       <input type="text" class="form-control form-flat" readonly>
@@ -65,11 +74,11 @@
                     <small>Upload your Previous Jobs .</small>
                   </div>
                   <div class="form-group">
-                    <label>Profile </label>
+                    <label>Profile Picture</label>
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-default btn-theme btn-file">
-                          File  <input type="file" >
+                          File  <input type="file" name="prof">
                         </span>
                       </span>
                       <input type="text" class="form-control form-flat" readonly>
@@ -84,28 +93,28 @@
                       <div class="col-md-4">
                         <div class="checkbox flat-checkbox">
                           <label>
-                            <input type="checkbox"> 
+                            <input type="checkbox" name="style[]" value="APA"> 
                             <span class="fa fa-check"></span>
                             APA (American Psychological Association)
                           </label>
                         </div>
                         <div class="checkbox flat-checkbox">
                           <label>
-                            <input type="checkbox"> 
-                            <span class="fa fa-check"></span>
+                            <input type="checkbox" name="style[]" value="MLA"> 
+                            <span class="fa fa-check"  ></span>
                             MLA (Modern Language Association)
                           </label>
                         </div>
                         <div class="checkbox flat-checkbox">
                           <label>
-                            <input type="checkbox"> 
+                            <input type="checkbox" name="style[]" value="Chicago/Turabian"> 
                             <span class="fa fa-check"></span>
                             Chicago/Turabian
                           </label>
                         </div>
                         <div class="checkbox flat-checkbox">
                           <label>
-                            <input type="checkbox"> 
+                            <input type="checkbox" name="style[]" value="Others"> 
                             <span class="fa fa-check"></span>
                             Others
                           </label>
@@ -117,10 +126,10 @@
                     <label>Experience (optional)</label>
                     <div class="row clearfix">
                       <div class="col-xs-6">
-                        <input type="text" class="form-control "  placeholder="Example: Accounting">
+                        <input type="text" class="form-control "  placeholder="Example: Writing">
                       </div>
                       <div class="col-xs-6">
-                        <select class="form-control">
+                        <select name="experience" class="form-control">
                           <option>1 year</option>
                           <option>2 years</option>
                           <option>3 years</option>

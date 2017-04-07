@@ -345,31 +345,31 @@ class Auth extends CI_Controller {
 	}
 
 
-	// activate the user
-	public function activate($id, $code=false)
+	// activate the user , $code=false
+	public function activate($id)
 	{
 		$this->data['users']=$this->ion_auth->get_users($id);
-		if ($code !== false)
-		{
-			$activation = $this->ion_auth->activate($id, $code);
-		}
-		else if ($this->ion_auth->is_admin())
-		{
-			$activation = $this->ion_auth->activate($id);
-		}
+		//if ($code !== false)
+		//{
+		//	$activation = $this->ion_auth->activate($id, $code);
+		//}
+		//else if ($this->ion_auth->is_admin())
+		//{
+		//	$activation = $this->ion_auth->activate($id);
+		//}
 
-		if ($activation)
-		{
+		//if ($activation)
+		//{
 			// redirect them to the auth page
-			$this->session->set_flashdata('message', $this->ion_auth->messages());
+			//$this->session->set_flashdata('message', $this->ion_auth->messages());
 			$this->render_page('theme/auth/addinfor', $this->data);
-		}
-		else
-		{
+		//}
+		//else
+		//{
 			// redirect them to the forgot password page
-			$this->session->set_flashdata('message', $this->ion_auth->errors());
-			redirect("theme/auth/forgot_password", 'refresh');
-		}
+		//	$this->session->set_flashdata('message', $this->ion_auth->errors());
+		//	redirect("theme/auth/forgot_password", 'refresh');
+		//}
 	}
 
 	// deactivate the user
