@@ -2233,7 +2233,12 @@ class Ion_auth_model extends CI_Model
 
 	    return $listArray;
 	}
-
+	public function get_users($value)
+	{
+		$this->db->where('id',$value);
+        $query=$this->db->get('users');
+        return $query->result();
+	}
 	protected function _filter_data($table, $data)
 	{
 		$filtered_data = array();
