@@ -11,17 +11,16 @@
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
                 <!-- form contact -->
-                <form class="form-horizontal" method="post" action="<?= site_url('auth/addinfor') ?>">
+                <div id="infoMessage"><?php echo $message;?></div>
+                <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?= site_url('auth/addinfor/'.$id) ?>" >
                 <div class="form-group">
                     <label>Name</label>
                     <input type="text" class="form-control "  placeholder="Enter Job Title" value="<?php foreach ($users as $user) {
                echo $user->first_name." ";
                echo $user->last_name ;
                }?>">
-               <input type="hidden" name="id" value="<?php foreach ($users as $user) {
-               echo $user->id ;
-               }?>">
                   </div>
+                  
                   <div class="form-group">
                 <label for="cat">Education Level</label>
                  <select name="cat" class="form-control">
@@ -34,7 +33,7 @@
                 </div>                  
                   <div class="form-group">
                     <label>Tell us why you are better</label>
-                    <div class="color-white-mute"><small>Describe the responsibilities of this job, Your work experience, skills.</small></div>
+                    <div class="color-white-mute"><small>Describe the yourself in accordance to this job, Your work experience, skills.</small></div>
                     <textarea class="form-control" rows="6" name="desc" placeholder="Enter Job Description"></textarea>
                   </div>
                   <div class="form-group">
@@ -42,7 +41,7 @@
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-default btn-theme btn-file">
-                          File  <input type="file" name="resume" >
+                          Resume  <input type="file" name="resume" >
                         </span>
                       </span>
                       <input type="text" class="form-control form-flat" readonly>
@@ -54,7 +53,7 @@
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-default btn-theme btn-file">
-                          File  <input type="file" name="cert" >
+                          Cert  <input type="file" name="cert" >
                         </span>
                       </span>
                       <input type="text" class="form-control form-flat" readonly>
@@ -78,7 +77,7 @@
                     <div class="input-group">
                       <span class="input-group-btn">
                         <span class="btn btn-default btn-theme btn-file">
-                          File  <input type="file" name="prof">
+                          Picture <input type="file" name="prof">
                         </span>
                       </span>
                       <input type="text" class="form-control form-flat" readonly>
@@ -126,7 +125,7 @@
                     <label>Experience (optional)</label>
                     <div class="row clearfix">
                       <div class="col-xs-6">
-                        <input type="text" class="form-control "  placeholder="Example: Writing">
+                        <input type="text" class="form-control " value="Writing"  placeholder="Example: Writing" readonly>
                       </div>
                       <div class="col-xs-6">
                         <select name="experience" class="form-control">

@@ -2239,6 +2239,10 @@ class Ion_auth_model extends CI_Model
         $query=$this->db->get('users');
         return $query->result();
 	}
+	public function addinfor($data)
+	{
+        $this->db->insert('addinfor', $data);
+	}
 	protected function _filter_data($table, $data)
 	{
 		$filtered_data = array();
