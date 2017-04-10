@@ -10,13 +10,25 @@
                       <div class="row">                        
                         <div class="col-md-11">
                         <?php 
-                        foreach ($numberoforders as $num ) {
+                        $public=0;
+                        $submited=0;
+                        $revision=0;
+                        $approved=0;
+                        $accepted=0;
+                        $rejected=0;
+                        foreach ($numberoforders as $num ){
                                 if($num->orderstatusid==1){
                                    $public=$num->cnt;
                                 }elseif($num->orderstatusid==2){
                                    $submited=$num->cnt;;
+                                }elseif($num->orderstatusid==3){
+                                   $approved=$num->cnt;;
                                 }elseif($num->orderstatusid==4){
                                    $revision=$num->cnt;
+                                }elseif($num->orderstatusid==5){
+                                   $accepted=$num->cnt;
+                                }elseif($num->orderstatusid==6){
+                                   $rejected=$num->cnt;
                                 }
                         
                         }                        
@@ -29,23 +41,26 @@
 				<h3 class="no-margin-top"><a href="<?= base_url() ?>orders/all_orders" class="">Public Orders</a></h3>
 			    </div>
 			    <div>
-				<h3 class="no-margin-top"><a href="<?= base_url() ?>orders/all_orders" class="">Applied Public Orders(<?php echo $public; ?>)</a></h3>
+				<h3 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders/<?php echo 1; ?>" class="">Applied Public Orders(<?php echo $public; ?>)</a></h3>
 			    </div>
 			    <?php if($this->session->userdata('groupid')==2){ ?>
 			    <div>
-				<h3 class="no-margin-top"><a href="<?= base_url() ?>orders/all_orders" class="">Private Orders(<?php 
+				<h3 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders" class="">Private Orders(<?php 
 				
 				?>)</a></h3>
 			    </div>
 			    <?php } ?>
 			    <div>
-				<h3 class="no-margin-top"><a href="<?= base_url() ?>orders/all_orders" class="">Submitted Orders(<?php echo $submited; ?>)</a></h3>
+				<h3 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders/2" class="">Submitted Orders(<?php echo $submited; ?>)</a></h3>
 			    </div>
 			    <div>
-				<h3 class="no-margin-top"><a href="<?= base_url() ?>orders/all_orders" class="">Revision Orders(<?php  ?>)</a></h3>
+				<h3 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders/4" class="">Revision Orders(<?php echo $revision; ?>)</a></h3>
 			    </div>
 			    <div>
-				<h3 class="no-margin-top"><a href="<?= base_url() ?>files/files" class="">Files</a></h3>
+				<h3 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders/3" class="">Approved Orders(<?php echo $approved; ?>)</a></h3>
+			    </div>
+			    <div>
+				<h3 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders/5/6" class="">Archived Orders(<?php echo ($accepted+$rejected); ?>)</a></h3>
 			    </div>
 			    <div>
 				<h3 class="no-margin-top"><a href="<?= base_url() ?>payments/payments" class="">Payments</a></h3>

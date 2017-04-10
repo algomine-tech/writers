@@ -13,7 +13,13 @@
           <div class="container">
             <div class="row">
               <div class="col-md-9">
-
+                 <script>
+                 <?php
+                 if(!empty($this->session->flashdata('message'))){?>
+                 alert("<?php echo $this->session->flashdata('message'); ?>");
+                 <?php } ?>
+                 </script>
+                
                 <!-- box listing -->
                 <div class="block-section-sm box-list-area">
                   <div class="box-list">                  

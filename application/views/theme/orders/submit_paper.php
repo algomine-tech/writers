@@ -43,7 +43,7 @@
                       <div class="row">
                         <div class="col-md-1 hidden-sm hidden-xs"><div class="img-item"><img src="./assets/theme/images/company-logo/4.jpg" alt=""></div></div>
                         <div class="col-md-11">
-                          <h3 class="no-margin-top"><a href="<?= base_url() ?>orders/all_orders/<?php echo $row->orderid; ?>" class=""><?php echo $row->subject.",  ".$row->papertype; ?></a></h3>
+                          <h3 class="no-margin-top"><a href="<?php echo $row->orderid; ?>" class=""><?php echo $row->subject.",  ".$row->papertype; ?></a></h3>
                           Topic: <B><?php echo $row->topic; ?></B><br>
                           by Client <B><?php echo $row->client; ?></B> 
                         
@@ -51,38 +51,43 @@
                           <div>
                           <B>created: <?php echo $timelag; ?> <?php ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Deadline:<?php echo $row->deadline ?></span><B>
                           </div>
-                          <div style="text-align:right; "><a href="#" class="">Apply</a></div>
-                           		  <!-- Modal Start -->
-			  <div class="modal fade" id="<?= $row->orderid; ?>" >
-			    <div class="modal-dialog ">
-			      <div class="modal-content">
-				<form method="post" action="<? echo base_url() ?>orders/order_application" class="form-horizontal" />                     
-				    <div class="modal-content">
-				    <div class="modal-header" style="text-align:center">Order Application Form</div>		      
-				    <div class="modal-body">
-				           <input type="hidden" name="id" value="<?php echo $row->orderid; ?>">
-				           <h3 class="no-margin-top"><a href="<?= base_url() ?>orders/all_orders/<?php echo $row->orderid; ?>" class=""><?php echo $row->subject.",  ".$row->papertype; ?></a></h3>
-					   Topic: <B><?php echo $row->topic; ?></B><br>
-					   
-					   <?php
-					   $amount=0;
-					   if($this->session->userdata('groupid')==2){
-					          $amount=($row->orderamount*60/100)*(60/100);
-					   }elseif($this->session->userdata('groupid')==3){
-					          $amount=($row->orderamount*60/100)*(35/100);
-					   }elseif($this->session->userdata('groupid')==4){
-					          $amount=($row->orderamount*60/100)*(15/100);
-					   }?>
-					   <B>Amount: $<?php echo round($amount,2); ?> <?php ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Deadline:<?php echo $row->deadline ?></span><B>
-				    </div>
-				    <div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Submit</button>
-			      </div>
-			      </div>
-			      </form>
-			      </div>
-			    </div>
-			  </div><!-- End Modal -->
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-md-11" align="center"> 
+                            <form method="post" action="<? echo base_url() ?>orders/save_paper_submition" enctype="multipart/form-data" />
+				  <div class="span12 field-box">
+				      <input type="hidden" name="orderid" id="orderid" value="<?php echo $row->orderid; ?>">
+				      <input type="file" name="userfile" id="userfile" value="<?php echo set_value('userfile'); ?>">
+				      <span class="alert-msg  error"><?php echo form_error('userfile');  ?></span>
+				  </div> 
+				  <?php 
+				  if(3==3 or $this->session->userdata('groupid')==4){
+				      foreach($ratingparameters as $parameter){
+				      $rating="";
+				      foreach($ordersratings as $rate){				         
+				         if($rate->ratingparameterid==$parameter->id){
+				             $rating=$rate->rate;
+				         }
+				      } 				      				      
+				      ?>
+				      <div class="span12 field-box">
+				      <label><?php echo $parameter->name; ?></label>
+				      <input type="text" <?php if(!empty($rating)){ echo "readonly"; }?> name="<?php echo $parameter->id; ?>" id="<?php echo $parameter->id; ?>" value="<?php echo $rating; ?>">
+				      <span class="alert-msg  error"><?php echo form_error($parameter->id);  ?></span>
+				      </div>
+				      <?php } 
+				  }
+				  ?>
+				  <div class="span12 field-box">				  
+				      <label>Remarks:</label><textarea name="remarks"><?php echo set_value('remarks');; ?></textarea>
+				      <span class="alert-msg  error"><?php echo form_error('remarks');  ?></span>
+				  </div>
+			      
+                          
+                             <button type="submit" class="btn btn-primary">Submit Paper</button>
+                            </form>
                         </div>
                       </div>
                     </div><!-- end item list -->

@@ -22,6 +22,16 @@ public function getNumber_WriterOrders($where){
 return $this->db->query("select count(*) cnt,writerorders.orderstatusid from writerorders $where group by orderstatusid order by orderstatusid asc");
 }
 
+public function getNumber_Editor_A_Orders($where){ 
+//get Orders for a specific writer	
+return $this->db->query("select count(*) cnt,editoraorders.orderstatusid from editoraorders $where group by orderstatusid order by orderstatusid asc");
+}
+
+public function getNumber_Editor_B_Orders($where){ 
+//get Orders for a specific writer	
+return $this->db->query("select count(*) cnt,editor_b_orders.orderstatusid from editor_b_orders $where group by orderstatusid order by orderstatusid asc");
+}
+
 public function getEditor_A_Order($where){ 
 //get Orders for a specific writer	
 return $this->db->query("select * from editoraorders $where");
@@ -34,7 +44,7 @@ $this->db->insert('writerorders', $data);
 
 public function save_editor_A_order_application($data){
 //Save application by Editor A
-$this->db->insert('editoraorders',$data);
+return $this->db->insert('editoraorders',$data);
 }
 
 public function save_editor_B_order_application($data){
@@ -53,6 +63,68 @@ public function getEditor_A_Orders(){
 //This is For Editor B dashbord
 return $this->db->query("select editoraorders.*,orders.id orderid,ss.username client,sss.username writer,ssss.username editor_A,orders.deadline,orders.amount orderamount,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at from editoraorders left join writerorders on writerorders.id=editoraorders.writerorderid left join orders on orders.id=writerorders.orderid left join users ss on ss.id=orders.user_id left join users sss on sss.id=writerorders.userid left join users ssss on ssss.id=editoraorders.userid left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id where editoraorders.id not in(select editorordersid from editor_b_orders) and editoraorders.orderstatusid=2");
 
+}
+
+public function getWriterOrders_By_Orderstatus($where){ 
+//getting Orders that have been Submitted by writers but not yet taken by any Editor A	
+//for editor A dashbord
+return $this->db->query("select writerorders.*,orders.id orderid,orders.deadline,orders.amount orderamount,ss.username client,sss.username writer,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at from writerorders left join orders on orders.id=writerorders.orderid left join users ss on ss.id=orders.user_id left join users sss on sss.id=writerorders.userid left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id $where");
+}
+
+public function getEditor_A_Order_By_Orderstatus($where){ 
+//getting Orders that have been Submitted by writers but not yet taken by any Editor A	
+//for editor A dashbord
+return $this->db->query("select editoraorders.*,orders.id orderid,orders.deadline,orders.amount orderamount,ss.username client,sss.username writer,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at from editoraorders left join writerorders on writerorders.id=editoraorders.writerorderid left join orders on orders.id=writerorders.orderid left join users ss on ss.id=orders.user_id left join users sss on sss.id=editoraorders.userid left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id $where");
+}
+
+public function add_ordertrack($data){
+//Insert into ordertrack table
+$this->db->insert('ordertrack', $data);
+return $this->db->insert_id();
+}
+
+public function add_upload($data){
+//Insert into uploadedfiles table
+$this->db->insert('uploadedfiles', $data);
+}
+
+public function change_writerOrder_status($orderstatusid,$where){
+//Insert into uploadedfiles table
+$this->db->query("update writerorders set orderstatusid='$orderstatusid' $where");
+}
+
+public function change_editor_A_Order_status($orderstatusid,$where)
+{
+//Update Status in editor A orders table
+$this->db->query("update editoraorders set orderstatusid='$orderstatusid' $where");
+}
+
+public function change_editor_B_Order_status($orderstatusid,$where)
+{
+//update Status in editor B orders table
+$this->db->query("update editoraorders set orderstatusid='$orderstatusid' $where");
+}
+
+public function add_Rating($data){
+$this->db->insert('ratings', $data);
+}
+
+public function getRatings($where){
+return $this->db->query("select ratingparameterid,rate from ratings $where");
+}
+
+
+public function getUploads($where){
+return $this->db->query("select uploadedfiles.*,users.username createdby,papers.topic,groups.name as groupid from uploadedfiles left join users on users.id=uploadedfiles.userid left join users_groups on users_groups.user_id=users.id left join groups on groups.id=users_groups.group_id left join papers on papers.order_id=uploadedfiles.orderid $where");
+}
+
+public function get_pending_writer_orders($where){ 
+//get Orders for a specific writer	
+return $this->db->query("select case when count(*) is null then 0 else count(*) end cnt from writerorders $where ");
+}
+
+public function getRatingParameters(){
+return $this->db->query("select * from ratingparameters");
 }
 
 }

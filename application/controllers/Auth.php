@@ -28,8 +28,7 @@ class Auth extends CI_Controller {
 			{
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
-                        $this->data['orders']=$this->orders_model->getOrders()->result();
-			$this->render_page('theme/orders/index', $this->data);
+                        redirect('orders', "refresh");
 		
 	}
 
