@@ -55,10 +55,13 @@
                             <B>created: <?php echo $timelag; ?> <?php ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Deadline:<?php echo $row->deadline ?></span><B>
                           </div>
                           <div style="text-align:right; "><a href="<?= base_url() ?>orders/load_papers/<?php echo $row->orderid; ?>" data-toggle="modal">View Papers</a></div>
+                          <?php if($row->orderstatusid==1 or $row->orderstatusid==4){ ?>
                           <div style="text-align:right; "><a href="<?= base_url() ?>orders/submit_paper/<?php echo $row->orderid; ?>" data-toggle="modal">Submit Paper</a></div>
-                          <?php if(3==3 or $this->session->userdata('groupid')==4){ ?>
+                          <?php if($this->session->userdata('groupid')==3 or $this->session->userdata('groupid')==4){ ?>
                           <div style="text-align:right; "><a href="<?= base_url() ?>orders/send_paper_for_revison/<?php echo $row->orderid; ?>" data-toggle="modal">Send Paper For Revision</a></div>
-                          <?php } ?>
+                          <?php } 
+                          }
+                          ?>
                         </div>
                       </div>
                     </div><!-- end item list -->

@@ -63,7 +63,7 @@
 				      <span class="alert-msg  error"><?php echo form_error('userfile');  ?></span>
 				  </div> 
 				  <?php 
-				  if(3==3 or $this->session->userdata('groupid')==4){
+				  if($this->session->userdata('groupid')==3 or $this->session->userdata('groupid')==4){
 				      foreach($ratingparameters as $parameter){
 				      $rating="";
 				      foreach($ordersratings as $rate){				         

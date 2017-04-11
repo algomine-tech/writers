@@ -47,6 +47,24 @@
 				    $timelag.=$hour." hrs ";
 			    if($min)
 				    $timelag.=$min." min "; 
+				    
+			    $endtime=0;    
+		            $start = strtotime($row->created_at);
+		            $end= strtotime($row->deadline);
+		            if($this->session->userdata('groupid')==2)
+	                    {
+				    $inter=($end-$start)*0.6;
+				    $endtime=$start+$inter;
+		            }elseif($this->session->userdata('groupid')==3){
+		                   $inter=($end-$start)*0.85;
+		                   $endtime=$start+$inter;
+		            }elseif($this->session->userdata('groupid')==4){
+		                   $inter=($end-$start)*1;
+		                   $endtime=$start+$inter;
+		            }
+		            $deadline=date("Y-m-d h:i:s",$endtime);
+		            
+		            foreach ($ratings as $rate ){};
                  ?>
                     <!-- item list -->
                     <div class="item">
@@ -73,10 +91,11 @@
                             <div style="color:red;"><a href="<?= base_url() ?>orders/load_order/<?php echo $row->orderid; ?>" class="">more</a></div>
                             <? }
                           ?>
-                            <B>created: <?php echo $timelag; ?> <?php ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Deadline:<?php echo $row->deadline ?></span><B>
+                            <B>created: <?php echo $timelag; ?> <?php ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Deadline:<?php echo $deadline; ?></span><B>
                           </div>
+                          <?php if($rate->rate!='suspended'){ ?>
                           <div style="text-align:right; "><a href="#<?= $row->orderid; ?>" data-toggle="modal">APPLY</a></div>
-                          
+                          <?php } ?>
 					  <!-- Modal Start -->
 			  <div class="modal fade" id="<?= $row->orderid; ?>" >
 			    <div class="modal-dialog ">
@@ -86,6 +105,8 @@
 				    <div class="modal-header" style="text-align:center">Order Application Form</div>		      
 				    <div class="modal-body">
 				           <input type="hidden" name="id" value="<?php echo $row->orderid; ?>">
+				           <input type="text" name="rating" value="<?php echo $rate->rate; ?>">
+				           <input type="text" name="levelid" value="<?php echo $row->writer_level_id; ?>">
 				           <h3 class="no-margin-top"><a href="<?= base_url() ?>orders/all_orders/<?php echo $row->orderid; ?>" class=""><?php echo $row->subject.",  ".$row->papertype; ?></a></h3>
 					   Topic: <B><?php echo $row->topic; ?></B><br>
 					   
@@ -98,7 +119,7 @@
 					   }elseif($this->session->userdata('groupid')==4){
 					          $amount=($row->orderamount*60/100)*(15/100);
 					   }?>
-					   <B>Amount: $<?php echo round($amount,2); ?> <?php ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Deadline:<?php echo $row->deadline ?></span><B>
+					   <B>Amount: $<?php echo round($amount,2); ?> <?php ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Deadline:<?php echo $deadline; ?></span><B>
 				    </div>
 				    <div class="modal-footer">
 				<button type="submit" class="btn btn-primary">Submit</button>

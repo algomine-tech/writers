@@ -119,12 +119,58 @@ return $this->db->query("select uploadedfiles.*,users.username createdby,papers.
 }
 
 public function get_pending_writer_orders($where){ 
-//get Orders for a specific writer	
+//get Pending Orders for a specific writer	
 return $this->db->query("select case when count(*) is null then 0 else count(*) end cnt from writerorders $where ");
 }
 
 public function getRatingParameters(){
 return $this->db->query("select * from ratingparameters");
+}
+
+public function getWriter_Rating($where){
+return $this->db->query("select case when sum(rate)/count(*)<=69 then 'suspended' when sum(rate)/count(*) between 70 and 74 or sum(rate)/count(*) is null then 1 when sum(rate)/count(*) between 75 and 79 then 2 when sum(rate)/count(*) between 80 and 84 then 3 when sum(rate)/count(*) between 85 and 89 then 4 when sum(rate)/count(*)>=90 then 5 end rate from ratings $where");
+}
+
+public function getEditor_A_Rating($where){
+return $this->db->query("select case when sum(rate)/count(*)<=69 then 'suspended' when sum(rate)/count(*) between 70 and 74 or sum(rate)/count(*) is null then 1 when sum(rate)/count(*) between 75 and 79 then 2 when sum(rate)/count(*) between 80 and 84 then 3 when sum(rate)/count(*) between 85 and 89 then 4 when sum(rate)/count(*)>=90 then 5 end rate from ratings $where");
+}
+
+public function getEditor_B_Rating($where){
+return $this->db->query("select case when sum(rate)/count(*)<=80 then 'suspended' when sum(rate)/count(*) between 81 and 84 or sum(rate)/count(*) is null then 1 when sum(rate)/count(*) between 85 and 88 then 2 when sum(rate)/count(*) between 89 and 92 then 3 when sum(rate)/count(*) between 93 and 96 then 4 when sum(rate)/count(*)>=96 then 5 end rate from ratings $where");
+}
+
+public function get_pending_editor_a_orders($where){
+//get Pending Orders for a specific editor A	
+return $this->db->query("select case when count(*) is null then 0 else count(*) end cnt from editoraorders $where ");
+}
+
+public function get_pending_editor_b_orders($where){
+//get Pending Orders for a specific editor B	
+return $this->db->query("select case when count(*) is null then 0 else count(*) end cnt from editor_b_orders $where ");
+}
+
+public function getRating_List($where){
+return $this->db->query("select sum(ratings.rate)/count(*) rate,ratings.orderid,papers.topic from ratings left join papers on papers.order_id=ratings.orderid $where group by orderid ");
+}
+
+public function getRating_List_Per_Order($where){
+return $this->db->query("select ratings.*,users.username,papers.topic,ratingparameters.name as parametername,groups.name groupname from ratings left join users on users.id=ratings.raterid left join papers on papers.order_id=ratings.orderid left join ratingparameters on ratingparameters.id=ratings.ratingparameterid left join users_groups on users_groups.user_id=users.id left outer join groups on groups.id=users_groups.group_id  $where ");
+}
+
+public function Lock_table_writerorders(){
+$this->db->query("LOCK TABLE writerorders WRITE");
+}
+
+public function Lock_table_editoraorders(){
+$this->db->query("LOCK TABLE editoraorders WRITE");
+}
+
+public function Lock_table_editor_B_orders(){
+$this->db->query("LOCK TABLE editor_b_orders WRITE");
+}
+
+public function Un_Lock_tables(){
+$this->db->query("UNLOCK TABLES");
 }
 
 }
