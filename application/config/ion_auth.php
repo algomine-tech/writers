@@ -124,7 +124,7 @@ $config['email_config'] = array(
     'protocol' => 'smtp',
     'smtp_host' => 'ssl://smtp.googlemail.com',
     'smtp_user' => 'oscarsalu@gmail.com', // actual values different
-    'smtp_pass' => '',
+    'smtp_pass' => 'bling07zee',
     'smtp_port' => 465,
     'charset' 	=> 'utf8'
 );
@@ -136,7 +136,7 @@ $config['email_config'] = array(
  | Folder where email templates are stored.
  | Default: auth/
  */
-$config['email_templates'] = 'auth/email/';
+$config['email_templates'] = 'theme/auth/email/';
 
 /*
  | -------------------------------------------------------------------------

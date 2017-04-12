@@ -343,11 +343,101 @@ class Auth extends CI_Controller {
 			redirect("auth/forgot_password", 'refresh');
 		}
 	}
+	public function addinfor()
+	{
+		$id = $this->uri->segment(3);
+		$this->data['id'] = $id;
+		$this->data['users']=$this->ion_auth->get_users($id);
+		// validate form input
+		$this->form_validation->set_rules('cat','Education Level','required');
+		$this->form_validation->set_rules('resume','Resume','required');
+		$this->form_validation->set_rules('cert','certificate','required');
+		$this->form_validation->set_rules('job','Previous Jobs','required');
+
+		if ($this->form_validation->run() === FALSE) 
+			{
+				$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+				$this->render_page('theme/auth/addinfor', $this->data);
+			}
+			else
+			{
+				$config['upload_path']          = './uploads/';
+                $config['allowed_types']        = 'gif|jpg|png';
+
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+
+		        if ( ! $this->upload->do_upload('resume'))
+					{
+						$this->data['message'] = array('error' => $this->upload->display_errors());
+						$this->render_page('theme/auth/addinfor', $this->data);
+						
+					}
+					else
+					{
+						$data = array('upload_data' => $this->upload->data());
+		            	$resumename = $data	['upload_data']['file_name'];
+					}
+					if ( ! $this->upload->do_upload('cert'))
+					{
+						$this->data['message'] = array('error' => $this->upload->display_errors());
+						$this->render_page('theme/auth/addinfor', $this->data);
+						
+					}
+					else
+					{
+						$data = array('upload_data' => $this->upload->data());
+		            	$certname = $data['upload_data']['file_name'];
+					}
+					if ( ! $this->upload->do_upload('job'))
+					{
+						$this->data['message'] = array('error' => $this->upload->display_errors());
+						$this->render_page('theme/auth/addinfor', $this->data);
+						
+					}
+					else
+					{
+						$data = array('upload_data' => $this->upload->data());
+		            	$jobname = $data['upload_data']['file_name'];
+					}
+					if ( ! $this->upload->do_upload('prof'))
+					{
+						$this->data['message'] = array('error' => $this->upload->display_errors());
+						$this->render_page('theme/auth/addinfor', $this->data);
+						
+					}
+					else
+					{
+						$data = array('upload_data' => $this->upload->data());
+		            	$profname = $data['upload_data']['file_name'];
+					}
+
+		        $checkBox = implode(',', $_POST['style']);
+				$data_info = array(
+					'user_id' => $id,
+					'education'  => $this->input->post('cat'),
+					'description'    => $this->input->post('desc'),
+					'profpic'	=> $profname,
+					'resume'      => $resumename,
+					'certificate'      => $certname,
+					'job_done'      => $jobname,
+					'style'      => $checkBox,
+					'experience'      => $this->input->post('experience'),
+				);
+				var_dump($data_info);
+				$this->ion_auth->addinfor($data_info);
+
+			}
+		//}
+	}
 
 
-	// activate the user
+	// activate the user , $code=false
 	public function activate($id, $code=false)
 	{
+		$this->data['users']=$this->ion_auth->get_users($id);
+		// display the edit user form
+		$this->data['csrf'] = $this->_get_csrf_nonce();
 		if ($code !== false)
 		{
 			$activation = $this->ion_auth->activate($id, $code);
@@ -361,13 +451,13 @@ class Auth extends CI_Controller {
 		{
 			// redirect them to the auth page
 			$this->session->set_flashdata('message', $this->ion_auth->messages());
-			redirect("auth", 'refresh');
+			$this->addinfor($id);
 		}
 		else
 		{
 			// redirect them to the forgot password page
 			$this->session->set_flashdata('message', $this->ion_auth->errors());
-			redirect("auth/forgot_password", 'refresh');
+			redirect("theme/auth/forgot_password", 'refresh');
 		}
 	}
 

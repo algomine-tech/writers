@@ -67,7 +67,7 @@ $countries = array("af"=>"Afghanistan","ax"=>"Aland Islands","al"=>"Albania","dz
           </div>
                   <div class="col-md-offset-2 col-md-8">
                     <!-- form login -->
-                    <form class="form-horizontal" method="post" action="<?= site_url('auth/create_user/') ?>">
+                    <form class="form-horizontal" method="post" action="<?= site_url('auth/create_user') ?>">
             <div class="box box-success">
         <div class="box-body">
         
