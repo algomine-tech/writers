@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 <?php
 /**
  * CodeIgniter
@@ -46,6 +49,7 @@ $lang['migration_class_doesnt_exist'] = 'The migration class "%s" could not be f
 $lang['migration_missing_up_method'] = 'The migration class "%s" is missing an "up" method.';
 $lang['migration_missing_down_method'] = 'The migration class "%s" is missing a "down" method.';
 $lang['migration_invalid_filename'] = 'Migration "%s" has an invalid filename.';
+<<<<<<< HEAD
 =======
 <?php
 /**
@@ -95,3 +99,5 @@ $lang['migration_missing_up_method'] = 'The migration class "%s" is missing an "
 $lang['migration_missing_down_method'] = 'The migration class "%s" is missing a "down" method.';
 $lang['migration_invalid_filename'] = 'Migration "%s" has an invalid filename.';
 >>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

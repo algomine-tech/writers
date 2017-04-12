@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 <?php
 /**
  * CodeIgniter
@@ -42,6 +45,7 @@ $lang['pagination_first_link'] = '&lsaquo; First';
 $lang['pagination_next_link'] = '&gt;';
 $lang['pagination_prev_link'] = '&lt;';
 $lang['pagination_last_link'] = 'Last &rsaquo;';
+<<<<<<< HEAD
 =======
 <?php
 /**
@@ -87,3 +91,5 @@ $lang['pagination_next_link'] = '&gt;';
 $lang['pagination_prev_link'] = '&lt;';
 $lang['pagination_last_link'] = 'Last &rsaquo;';
 >>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

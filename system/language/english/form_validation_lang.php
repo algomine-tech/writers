@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 <?php
 /**
  * CodeIgniter
@@ -68,6 +71,7 @@ $lang['form_validation_greater_than']		= 'The {field} field must contain a numbe
 $lang['form_validation_greater_than_equal_to']	= 'The {field} field must contain a number greater than or equal to {param}.';
 $lang['form_validation_error_message_not_set']	= 'Unable to access an error message corresponding to your field name {field}.';
 $lang['form_validation_in_list']		= 'The {field} field must be one of: {param}.';
+<<<<<<< HEAD
 =======
 <?php
 /**
@@ -139,3 +143,5 @@ $lang['form_validation_greater_than_equal_to']	= 'The {field} field must contain
 $lang['form_validation_error_message_not_set']	= 'Unable to access an error message corresponding to your field name {field}.';
 $lang['form_validation_in_list']		= 'The {field} field must be one of: {param}.';
 >>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

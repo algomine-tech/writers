@@ -31,10 +31,16 @@
 class PayPal_Pro
 {
 
+<<<<<<< HEAD
 	var $APIUsername = 'oscarsalu-facilitator_api1.gmail.com
 ';
 	var $APIPassword = 'VGLGDQZPK6CAGUWK';
 	var $APISignature = 'AFcWxV21C7fd0v3bYYYRCpSSRl31A3zmQrGeBJX9GDCHAAm.H7hCm04o';
+=======
+	var $APIUsername = '';
+	var $APIPassword = '';
+	var $APISignature = '';
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 	var $APISubject = '';
 	var $APIVersion = '';
 	var $APIMode = '';

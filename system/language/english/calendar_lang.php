@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 <?php
 /**
  * CodeIgniter
@@ -83,6 +86,7 @@ $lang['cal_september'] = 'September';
 $lang['cal_october'] = 'October';
 $lang['cal_november'] = 'November';
 $lang['cal_december'] = 'December';
+<<<<<<< HEAD
 =======
 <?php
 /**
@@ -169,3 +173,5 @@ $lang['cal_october'] = 'October';
 $lang['cal_november'] = 'November';
 $lang['cal_december'] = 'December';
 >>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

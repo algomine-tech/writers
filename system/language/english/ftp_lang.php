@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 <?php
 /**
  * CodeIgniter
@@ -50,6 +53,7 @@ $lang['ftp_no_source_file']		= 'Unable to locate the source file. Please check y
 $lang['ftp_unable_to_rename']		= 'Unable to rename the file.';
 $lang['ftp_unable_to_delete']		= 'Unable to delete the file.';
 $lang['ftp_unable_to_move']		= 'Unable to move the file. Please make sure the destination directory exists.';
+<<<<<<< HEAD
 =======
 <?php
 /**
@@ -103,3 +107,5 @@ $lang['ftp_unable_to_rename']		= 'Unable to rename the file.';
 $lang['ftp_unable_to_delete']		= 'Unable to delete the file.';
 $lang['ftp_unable_to_move']		= 'Unable to move the file. Please make sure the destination directory exists.';
 >>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

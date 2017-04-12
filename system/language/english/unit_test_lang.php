@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 <?php
 /**
  * CodeIgniter
@@ -57,6 +60,7 @@ $lang['ut_object'] = 'Object';
 $lang['ut_resource'] = 'Resource';
 $lang['ut_null'] = 'Null';
 $lang['ut_notes'] = 'Notes';
+<<<<<<< HEAD
 =======
 <?php
 /**
@@ -117,3 +121,5 @@ $lang['ut_resource'] = 'Resource';
 $lang['ut_null'] = 'Null';
 $lang['ut_notes'] = 'Notes';
 >>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

@@ -16,4 +16,8 @@ $config = array(
 		'port'     => '11211',
 		'weight'   => '1',
 	),
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

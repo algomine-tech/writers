@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 <?php
 /**
  * CodeIgniter
@@ -59,6 +62,7 @@ $lang['profiler_no_profiles'] = 'No Profile data - all Profiler sections have be
 $lang['profiler_section_hide'] = 'Hide';
 $lang['profiler_section_show'] = 'Show';
 $lang['profiler_seconds'] = 'seconds';
+<<<<<<< HEAD
 =======
 <?php
 /**
@@ -121,3 +125,5 @@ $lang['profiler_section_hide'] = 'Hide';
 $lang['profiler_section_show'] = 'Show';
 $lang['profiler_seconds'] = 'seconds';
 >>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

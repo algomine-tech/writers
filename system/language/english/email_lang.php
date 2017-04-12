@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 <?php
 /**
  * CodeIgniter
@@ -57,6 +60,7 @@ $lang['email_smtp_auth_un'] = 'Failed to authenticate username. Error: %s';
 $lang['email_smtp_auth_pw'] = 'Failed to authenticate password. Error: %s';
 $lang['email_smtp_data_failure'] = 'Unable to send data: %s';
 $lang['email_exit_status'] = 'Exit status code: %s';
+<<<<<<< HEAD
 =======
 <?php
 /**
@@ -117,3 +121,5 @@ $lang['email_smtp_auth_pw'] = 'Failed to authenticate password. Error: %s';
 $lang['email_smtp_data_failure'] = 'Unable to send data: %s';
 $lang['email_exit_status'] = 'Exit status code: %s';
 >>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

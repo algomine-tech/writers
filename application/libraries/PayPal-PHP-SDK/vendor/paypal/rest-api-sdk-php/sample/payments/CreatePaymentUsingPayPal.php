@@ -75,8 +75,13 @@ $transaction->setAmount($amount)
 // payment approval/ cancellation.
 $baseUrl = getBaseUrl();
 $redirectUrls = new RedirectUrls();
+<<<<<<< HEAD
 $redirectUrls->setReturnUrl("$baseUrl/paypal/execute_payment?success=true")
     ->setCancelUrl("$baseUrl/paypal/execute_payment?success=false");
+=======
+$redirectUrls->setReturnUrl("$baseUrl/map/execute_payment?success=true")
+    ->setCancelUrl("$baseUrl/map/cancel_buy?success=false");
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 
 // ### Payment
 // A Payment Resource; create one using

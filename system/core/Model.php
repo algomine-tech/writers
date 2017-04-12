@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 <?php
 /**
  * CodeIgniter
@@ -79,6 +82,7 @@ class CI_Model {
 	}
 
 }
+<<<<<<< HEAD
 =======
 <?php
 /**
@@ -161,3 +165,5 @@ class CI_Model {
 
 }
 >>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

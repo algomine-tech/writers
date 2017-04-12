@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 <?php
 /**
  * CodeIgniter
@@ -56,6 +59,7 @@ $lang['imglib_invalid_image'] = 'The provided image is not valid.';
 $lang['imglib_copy_failed'] = 'The image copy routine failed.';
 $lang['imglib_missing_font'] = 'Unable to find a font to use.';
 $lang['imglib_save_failed'] = 'Unable to save the image. Please make sure the image and file directory are writable.';
+<<<<<<< HEAD
 =======
 <?php
 /**
@@ -115,3 +119,5 @@ $lang['imglib_copy_failed'] = 'The image copy routine failed.';
 $lang['imglib_missing_font'] = 'Unable to find a font to use.';
 $lang['imglib_save_failed'] = 'Unable to save the image. Please make sure the image and file directory are writable.';
 >>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

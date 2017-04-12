@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 <?php
 /**
  * CodeIgniter
@@ -54,6 +57,7 @@ $lang['upload_no_filepath'] = 'The upload path does not appear to be valid.';
 $lang['upload_no_file_types'] = 'You have not specified any allowed file types.';
 $lang['upload_bad_filename'] = 'The file name you submitted already exists on the server.';
 $lang['upload_not_writable'] = 'The upload destination folder does not appear to be writable.';
+<<<<<<< HEAD
 =======
 <?php
 /**
@@ -111,3 +115,5 @@ $lang['upload_no_file_types'] = 'You have not specified any allowed file types.'
 $lang['upload_bad_filename'] = 'The file name you submitted already exists on the server.';
 $lang['upload_not_writable'] = 'The upload destination folder does not appear to be writable.';
 >>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

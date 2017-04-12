@@ -124,7 +124,11 @@ $config['email_config'] = array(
     'protocol' => 'smtp',
     'smtp_host' => 'ssl://smtp.googlemail.com',
     'smtp_user' => 'oscarsalu@gmail.com', // actual values different
+<<<<<<< HEAD
     'smtp_pass' => '',
+=======
+    'smtp_pass' => 'bling07zee',
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
     'smtp_port' => 465,
     'charset' 	=> 'utf8'
 );
@@ -188,4 +192,8 @@ $config['error_start_delimiter']   = '<div style="color:red">';		// Error messag
 $config['error_end_delimiter']     = '</div>';	// Error message end delimiter
 
 /* End of file ion_auth.php */
+<<<<<<< HEAD
 /* Location: ./application/config/ion_auth.php */
+=======
+/* Location: ./application/config/ion_auth.php */
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

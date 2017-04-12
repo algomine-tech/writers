@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 <?php
 /**
  * CodeIgniter
@@ -150,6 +153,7 @@ class CI_DB_mssql_forge extends CI_DB_forge {
 	}
 
 }
+<<<<<<< HEAD
 =======
 <?php
 /**
@@ -303,3 +307,5 @@ class CI_DB_mssql_forge extends CI_DB_forge {
 
 }
 >>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
+=======
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
