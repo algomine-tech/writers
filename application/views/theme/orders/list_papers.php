@@ -30,7 +30,11 @@
 			      </thead>
 			      <tbody>
 				<!--loop through the array to display the Supplier data --> 
-			      <?php foreach ($uploads as $row) { ?>
+			      <?php 
+			      if(empty($uploads)){
+				  $uploads=array();
+			      }
+			      foreach ($uploads as $row) { ?>
 		      
 				<tr>
 				  <td><?php echo $row->topic; ?></td>

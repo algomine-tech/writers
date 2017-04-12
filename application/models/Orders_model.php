@@ -4,12 +4,12 @@ class orders_model extends CI_Model {
 public function getOrders(){ 
 //getting all records that have not yet been taken by Writers
 //for Writer dashbord
-return $this->db->query('select orders.*,orders.id orderid,orders.amount orderamount,users.username client,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at from orders left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id left join users on users.id=orders.user_id where orders.id not in(select orderid from writerorders)');
+return $this->db->query('select orders.*,orders.id orderid,orders.amount orderamount,users.username client,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at,writer_levels.name levelname from orders left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id left join users on users.id=orders.user_id left join writer_levels on writer_levels.id=orders.writer_level_id where orders.id not in(select orderid from writerorders)');
 }
 
 public function getParticularOrder($where){ 
 //getting all records	
-return $this->db->query("select orders.*,orders.id orderid,users.username client,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at from orders left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id left join users on users.id=orders.user_id $where");
+return $this->db->query("select orders.*,orders.id orderid,users.username client,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at,writer_levels.name as levelname from orders left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id left join users on users.id=orders.user_id left join writer_levels on writer_levels.id=orders.writer_level_id $where");
 }
 
 public function getWriterOrder($where){ 

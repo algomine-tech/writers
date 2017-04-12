@@ -24,6 +24,9 @@
                 <div class="block-section-sm box-list-area">
                   <div class="box-list">                  
                     <?php 
+                    if(empty($orders)){
+                         $orders=array();
+                    }
                     foreach ($orders as $row) {
 			    $now=date("Y-m-d h:i");
 			    $datetime1 = new DateTime($row->created_at);
@@ -48,6 +51,7 @@
 			    if($min)
 				    $timelag.=$min." min "; 
 				    
+		            //set deadline for each group i.e writers 60%, editor A 35% and Editor B 15% of total time
 			    $endtime=0;    
 		            $start = strtotime($row->created_at);
 		            $end= strtotime($row->deadline);
@@ -73,7 +77,8 @@
                         <div class="col-md-11">
                           <h3 class="no-margin-top"><a href="<?= base_url() ?>orders/all_orders/<?php echo $row->orderid; ?>" class=""><?php echo $row->subject.",  ".$row->papertype; ?></a></h3>
                           Topic: <B><?php echo $row->topic; ?></B><br>
-                          by Client <B><?php echo $row->client; ?></B> 
+                          by Client: <B><?php echo $row->client; ?></B><br>
+                          Rating: <B><?php echo $row->levelname; ?></B> 
                           <?php 
                               $instructions=$row->paper_instructions;
                               $limit=200;
@@ -105,10 +110,11 @@
 				    <div class="modal-header" style="text-align:center">Order Application Form</div>		      
 				    <div class="modal-body">
 				           <input type="hidden" name="id" value="<?php echo $row->orderid; ?>">
-				           <input type="text" name="rating" value="<?php echo $rate->rate; ?>">
-				           <input type="text" name="levelid" value="<?php echo $row->writer_level_id; ?>">
+				           <input type="hidden" name="rating" value="<?php echo $rate->rate; ?>">
+				           <input type="hidden" name="levelid" value="<?php echo $row->writer_level_id; ?>">
 				           <h3 class="no-margin-top"><a href="<?= base_url() ?>orders/all_orders/<?php echo $row->orderid; ?>" class=""><?php echo $row->subject.",  ".$row->papertype; ?></a></h3>
 					   Topic: <B><?php echo $row->topic; ?></B><br>
+                                           Rating: <B><?php echo $row->levelname; ?></B> 
 					   
 					   <?php
 					   $amount=0;

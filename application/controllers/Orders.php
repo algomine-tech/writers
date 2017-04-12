@@ -12,7 +12,7 @@ class Orders extends MY_Controller
         
         $userid=$this->session->userdata('user_id');
         $where="where userid='$userid'";
-        if(2==2){
+        if($this->session->userdata('groupid')==2){
                   $where="where orderid in(select orderid from writerorders where userid='$userid')";
 		  $this->data['ratings']=$this->orders_model->getWriter_Rating($where)->result();
 		  
@@ -35,7 +35,7 @@ class Orders extends MY_Controller
           $this->data['page_title'] = 'Orders'; 
           $userid=$this->session->userdata('user_id');
           $where="where userid='$userid'";
-          if(2==2){
+          if($this->session->userdata('groupid')==2){
 		  $this->data['orders']=$this->orders_model->getOrders()->result();
 		  $this->data['numberoforders']=$this->orders_model->getNumber_WriterOrders($where)->result();
 		  
@@ -59,7 +59,7 @@ class Orders extends MY_Controller
             $this->data['page_header']="Orders";
             $this->data['content_title']="Orders";
             $userid=$this->session->userdata('user_id');
-            if(2==2){
+            if($this->session->userdata('groupid')==2){
 		  $this->data['orders']=$this->orders_model->getOrders()->result();
 		  $where="where userid='$userid'";
 		  $this->data['numberoforders']=$this->orders_model->getNumber_WriterOrders($where)->result();
@@ -87,7 +87,7 @@ class Orders extends MY_Controller
             $userid=$this->session->userdata('user_id');
             $wheres="where userid='$userid'";
             $this->data['orders']=$this->orders_model->getParticularOrder($where)->result();
-            if(2==2){
+            if($this->session->userdata('groupid')==2){
 		   $this->data['numberoforders']=$this->orders_model->getNumber_WriterOrders($wheres)->result();
 	    }
 	    elseif($this->session->userdata('groupid')==3)
@@ -106,7 +106,7 @@ class Orders extends MY_Controller
     {
             $this->data['page_header']="Orders";
             $userid=$this->session->userdata('user_id');            
-            if(2==2){
+            if($this->session->userdata('groupid')==2){
                   $wheres="where userid='$userid' and orderstatusid='$orderstatusid'";
                   $this->data['orders']=$this->orders_model->getWriterOrders_By_Orderstatus($wheres)->result();
 		  $where="where userid='$userid'";
@@ -143,7 +143,7 @@ class Orders extends MY_Controller
 			
 	$this->orders_model->add_ordertrack($ordertrackdata);
 	        
-    	if(2==2){
+    	if($this->session->userdata('groupid')==2){
     	            //check if writer has pending Orders and level requirements
     	            $levelid =$this->input->post('levelid');
     	            $rating =$this->input->post('rating');
@@ -333,7 +333,7 @@ class Orders extends MY_Controller
             $w="where ratings.orderid=$id and raterid='$userid'"; 
             $this->data['ordersratings']=$this->orders_model->getRatings($w)->result();
             $this->data['ratingparameters']=$this->orders_model->getRatingParameters()->result();
-            if(2==2){
+            if($this->session->userdata('groupid')==2){
 		   $this->data['numberoforders']=$this->orders_model->getNumber_WriterOrders($wheres)->result();
 	    }
 	    elseif($this->session->userdata('groupid')==3)
@@ -414,7 +414,7 @@ class Orders extends MY_Controller
 			
 	        $this->orders_model->add_upload($uploaddata);
 	        
-	        if(2==2){
+	        if($this->session->userdata('groupid')==2){
 		      $where="where orderid='$orderid'";
 		      $this->orders_model->change_writerOrder_status(2,$where);
 		      
@@ -483,7 +483,7 @@ class Orders extends MY_Controller
             $this->data['content_title']="Papers";
             $userid=$this->session->userdata('user_id');
             $wheres="where userid='$userid'";
-            if(2==2){
+            if($this->session->userdata('groupid')==2){
 		   $this->data['numberoforders']=$this->orders_model->getNumber_WriterOrders($wheres)->result();
 	    }
 	    elseif($this->session->userdata('groupid')==3)
@@ -612,7 +612,7 @@ class Orders extends MY_Controller
             $this->data['content_title']="Ratings";
             $userid=$this->session->userdata('user_id');
             $wheres="where userid='$userid'";
-            if(2==2){                  
+            if($this->session->userdata('groupid')==2){                  
 		   $this->data['numberoforders']=$this->orders_model->getNumber_WriterOrders($wheres)->result();
 		   
 		   $where="where ratings.orderid in(select orderid from writerorders where userid='$userid')";
@@ -637,7 +637,7 @@ class Orders extends MY_Controller
             $this->data['content_title']="Ratings";
             $userid=$this->session->userdata('user_id');
             $wheres="where userid='$userid'";
-            if(2==2){                  
+            if($this->session->userdata('groupid')==2){                  
 		   $this->data['numberoforders']=$this->orders_model->getNumber_WriterOrders($wheres)->result();
 		   
 		   $where="where ratings.orderid in(select orderid from writerorders where userid='$userid') and ratings.orderid='$orderid'";

@@ -30,6 +30,9 @@
 			      <?php //print_r($ratingdata);
 			        $num=0;
 			        $sum=0;
+			        if(empty($ratingdata)){
+				    $ratingdata=array();
+				}
 			        foreach ($ratingdata as $row) { 
 			        $sum+=$row->rate;
 			        $num++;

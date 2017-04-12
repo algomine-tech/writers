@@ -17,6 +17,10 @@
                         $accepted=0;
                         $rejected=0;
                         $resubmition=0;
+                         if(empty($numberoforders)){
+				  $numberoforders=array();
+			 }
+			       
                         foreach ($numberoforders as $num ){
                                 if($num->orderstatusid==1){
                                    $public=$num->cnt;
@@ -35,6 +39,11 @@
                                 }
                         
                         }    
+                        
+                        if(empty($ratings)){
+				  $ratings=array();
+			}
+			
                         foreach ($ratings as $rate ){
                                if($rate->rate==1){
 				   $rate->rate='High School';
@@ -50,6 +59,7 @@
                                    $rate->rate='PHD Level';
                                }
                         }
+                     
                         ?>
                             <div>
 				<img src="<?= base_url() ?>/images/pass.jpg" alt="" width="40%">
@@ -92,7 +102,7 @@
 				<h4 class="no-margin-top"><a href="<?= base_url() ?>profile/profile" class="">Profile</a></h4>
 			    </div> 
 			    <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>orders/ratings" class="">Rating:<?php echo $rate->rate; ?></a></h4>
+				<h4 class="no-margin-top"><a href="<?= base_url() ?>orders/ratings" class="">Rating:<?php if(!empty($ratings)){ echo $rate->rate; } ?></a></h4>
 			    </div>                        
                         </div>
                       </div>
