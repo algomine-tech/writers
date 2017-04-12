@@ -433,7 +433,7 @@ class Auth extends CI_Controller {
 
 
 	// activate the user , $code=false
-	public function activate($id)
+	public function activate($id, $code=false)
 	{
 		$this->data['users']=$this->ion_auth->get_users($id);
 		// display the edit user form

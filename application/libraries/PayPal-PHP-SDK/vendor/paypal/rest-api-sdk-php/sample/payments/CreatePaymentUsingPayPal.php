@@ -28,15 +28,15 @@ $payer->setPaymentMethod("paypal");
 $Array_o_items = array();
 
 $Total=0;$Array_o_items = array();
-foreach($Data_songs as $row){
+foreach($Data as $row){
     $item = new Item();
-    $item->setName($row['song_name'])
+    $item->setName($row['orderid'])
     ->setCurrency('USD')
     ->setQuantity(1)
     ->setSku($row['id'])  
-    ->setPrice($row['price']);
+    ->setPrice($row['amount']);
     $Array_o_items[] = $item;
-    $Total+=$row['price'];
+    $Total+=$row['amount'];
 }
 
 $itemList = new ItemList();

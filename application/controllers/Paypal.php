@@ -23,11 +23,12 @@ class Paypal extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('paypal_model');
     }
 
     public function index()
     {
-        //$Data_songs = 
+        $Data = $this->paypal_model->getRows();
        include APPPATH.'libraries/PayPal-PHP-SDK/vendor/paypal/rest-api-sdk-php/sample/payments/CreatePaymentUsingPayPal.php';
        //$this->load->library('PayPal-PHP-SDK/sample/payments/CreatePayment.php');
     }

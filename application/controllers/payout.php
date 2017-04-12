@@ -21,17 +21,17 @@ class Payout extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('M_photo');
-        $this->load->model('M_user');
-        if ($this->session->userdata('loged_in') == false) {
-            redirect('account/login');
-        }
-        $ac = $this->session->userdata('access');
+        //$this->load->model('M_photo');
+        //$this->load->model('M_user');
+        //if ($this->session->userdata('loged_in') == false) {
+          //  redirect('account/login');
+        //}
+        //$ac = $this->session->userdata('access');
          $data['redirect_url']=$this->curPageURL();
-        if (!isset($ac) && !in_array($ac, $this->config->item('access_password'))) {
+        // if (!isset($ac) && !in_array($ac, $this->config->item('access_password'))) {
            
-            redirect("access?redirect_url=".$data['redirect_url']);
-        }
+        //     redirect("access?redirect_url=".$data['redirect_url']);
+        // }
     }
     
     public function curPageURL() {
@@ -53,32 +53,35 @@ class Payout extends CI_Controller
      */
     public function payout()
     {
-        $id = $this->session->userdata('loged_in');
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('email', 'AMP fee', 'required|valid_email');
-        $this->form_validation->set_rules('email_confirm', 'Email Support', 'required|valid_email|matches[email]');
-        $this->form_validation->set_rules('amount', 'Email Support', 'required');
-        if ($this->form_validation->run() != false) {
-            $EMAIL_paypal = $this->input->post('email');
-            $AMOUNT = round($this->input->post('amount'), 2, PHP_ROUND_HALF_DOWN);
+        //$id = $this->session->userdata('loged_in');
+        //$this->load->library('form_validation');
+        //$this->form_validation->set_rules('email', 'AMP fee', 'required|valid_email');
+        //$this->form_validation->set_rules('email_confirm', 'Email Support', 'required|valid_email|matches[email]');
+        //$this->form_validation->set_rules('amount', 'Email Support', 'required');
+        //if ($this->form_validation->run() != false) {
+           // $EMAIL_paypal = $this->input->post('email');
+           // $AMOUNT = round($this->input->post('amount'), 2, PHP_ROUND_HALF_DOWN);
+        $id = 10;
+        $EMAIL_paypal = 'xxx@gmail.com';
+        $AMOUNT = 2000;
             $data_user = $this->db->where('id', $id)->get('users')->row();
-            $MONEY_balance = $data_user->balance;
+         //   $MONEY_balance = $data_user->balance;
+            $MONEY_balance = 3000;
             if ($MONEY_balance > 0 && $AMOUNT <= $MONEY_balance) {
                 include APPPATH.'libraries/PayPal-PHP-SDK/vendor/paypal/rest-api-sdk-php/sample/payouts/CreateSingePayout.php';
                /* $balance = round($MONEY_balance - $AMOUNT, 5, PHP_ROUND_HALF_DOWN);
                 $this->db->where('id', $data_user->id)->update('users', array('balance' => $balance)); */
                 $data_insert = array(
                     'amount	' => $AMOUNT,
-                    'user_id' => $data_user->id,
-                    'time' => time(),
+                    'userid' => $data_user->id,
+                    'withdrawnon' => time(),
                     'currency' => 'USD',
-                    'type' => 'withdraw',
                     'paypal_email'=>$EMAIL_paypal,
                     'status'=>0,
                  );
-                $this->db->insert('transactions', $data_insert);
+                $this->db->insert('withdrawals', $data_insert);
             }
-        } else {
+        /*} else {
             $error = $this->form_validation->error_array();
             $output = '<ol>';
             foreach ($error as $key => $val) {
@@ -86,7 +89,7 @@ class Payout extends CI_Controller
             }
             $output .= '</ol>';
             $this->session->set_flashdata('message_error', $output);
-        }
-        redirect('amper/stats');
+        }*/
+        //redirect('amper/stats');
     }
 }

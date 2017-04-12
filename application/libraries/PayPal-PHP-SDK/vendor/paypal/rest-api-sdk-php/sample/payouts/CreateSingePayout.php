@@ -36,8 +36,8 @@ $payouts = new \PayPal\Api\Payout();
 $senderBatchHeader = new \PayPal\Api\PayoutSenderBatchHeader();
 // ### NOTE:
 // You can prevent duplicate batches from being processed. If you specify a `sender_batch_id` that was used in the last 30 days, the batch will not be processed. For items, you can specify a `sender_item_id`. If the value for the `sender_item_id` is a duplicate of a payout item that was processed in the last 30 days, the item will not be processed.
-$clientId = 'AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS';
-$clientSecret = 'EGnHDxD_qRPdaLdZz8iCr8N7_MzF-YHPTkjs6NKYQvQSBngp4PTTVWkPZRbL';
+$clientId = 'ASMoCRbI0-wS52QLMv93SMdwAZ3J_-Tb8bwErit7Oxh5eCUZhFQJpEbK36kHxM--piO_AZVhdUzahuHE';
+$clientSecret = 'EGcLOayoT6W0Lxyd_MkbNMfmAeXpC-cDzuPOS25rH9PgjXiLLelDxoVtdd0pFRwrqrUbo5BWKwe_YSIF';
 $apiContext = new \PayPal\Rest\ApiContext(
     new \PayPal\Auth\OAuthTokenCredential(
         $clientId,
