@@ -180,4 +180,8 @@ return array(
 	'odm'	=>	'application/vnd.oasis.opendocument.text-master',
 	'ott'	=>	'application/vnd.oasis.opendocument.text-template',
 	'oth'	=>	'application/vnd.oasis.opendocument.text-web'
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

@@ -61,4 +61,8 @@ $smileys = array(
 	':exclaim:'		=>	array('exclaim.gif',		'19',	'19',	'exclaim'),
 	':question:'	=>	array('question.gif',		'19',	'19',	'question')
 
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

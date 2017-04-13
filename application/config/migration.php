@@ -81,4 +81,8 @@ $config['migration_version'] = 0;
 | Also, writing permission is required within the migrations path.
 |
 */
+<<<<<<< HEAD
 $config['migration_path'] = APPPATH.'migrations/';
+=======
+$config['migration_path'] = APPPATH.'migrations/';
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
