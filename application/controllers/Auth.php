@@ -931,4 +931,8 @@ class Auth extends CI_Controller {
         $this->load->view('theme/footer');
     
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

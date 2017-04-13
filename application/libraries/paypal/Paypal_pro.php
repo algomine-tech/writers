@@ -35,6 +35,9 @@ class PayPal_Pro
 ';
 	var $APIPassword = 'VGLGDQZPK6CAGUWK';
 	var $APISignature = 'AFcWxV21C7fd0v3bYYYRCpSSRl31A3zmQrGeBJX9GDCHAAm.H7hCm04o';
+	var $APIUsername = '';
+	var $APIPassword = '';
+	var $APISignature = '';
 	var $APISubject = '';
 	var $APIVersion = '';
 	var $APIMode = '';

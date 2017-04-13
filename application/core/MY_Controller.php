@@ -69,11 +69,19 @@ class MY_Controller extends CI_Controller {
         // Language & Model Files
         //--------------------------------------------------------------------
          
+<<<<<<< HEAD
+//         if (!$this->ion_auth->logged_in())
+//         {
+//             // redirect them to the login page
+//             redirect('auth/login', 'refresh');
+//         }
+=======
         if (!$this->ion_auth->logged_in())
         {
             // redirect them to the login page
             redirect('auth/login', 'refresh');
         }
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
         if (!is_null($this->language_file)) $this->lang->load($this->language_file);
 
         if (!is_null($this->model_file))
@@ -425,5 +433,8 @@ class Authenticated_Controller extends MY_Controller {
     
     }
 
+<<<<<<< HEAD
+=======
     
+>>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 }
