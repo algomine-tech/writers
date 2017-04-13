@@ -23,7 +23,7 @@ class Auth extends CI_Controller {
 		{
 			// redirect them to the login page
 			redirect('auth/login', 'refresh');
-		}else {
+		}else{
 			// set the flash data error message if there is one
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
@@ -36,8 +36,6 @@ class Auth extends CI_Controller {
             
 			$this->render_page('theme/auth/index', $this->data);
 		}
-
-			
 	}
 
 
