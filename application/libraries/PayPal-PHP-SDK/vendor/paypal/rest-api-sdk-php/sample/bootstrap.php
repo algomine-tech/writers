@@ -31,8 +31,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 // Replace these values by entering your own ClientId and Secret by visiting https://developer.paypal.com/webapps/developer/applications/myapps
-$clientId = 'AdFS5HZ9MThAgwdFPOPWWjrJUSx6M4puioEMCk2R-b0VG2CioibFLU_TC26qn0d9yPrFH0IF7m_M0ZUC';
-$clientSecret = 'EI4wWJD-xtA1DPoaRM44NDbPsKFAXVVdikXIm9tpv-XnNcz6Zoo3-1Ch4zxm4PxHqO76ZXn8hsw31E_b';
+$clientId = 'ASMoCRbI0-wS52QLMv93SMdwAZ3J_-Tb8bwErit7Oxh5eCUZhFQJpEbK36kHxM--piO_AZVhdUzahuHE';
+$clientSecret = 'EGcLOayoT6W0Lxyd_MkbNMfmAeXpC-cDzuPOS25rH9PgjXiLLelDxoVtdd0pFRwrqrUbo5BWKwe_YSIF';
 
 /** @var \Paypal\Rest\ApiContext $apiContext */
 $apiContext = getApiContext($clientId, $clientSecret);

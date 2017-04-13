@@ -22,7 +22,22 @@ class Paypal_model extends CI_Model {
             }
             return !empty($result)?$result:false;
         }
-    
+
+        public function deposits($id)
+        {
+            $query = $this->db->query("select * from deposits left join users on users.id=deposits.userid left join papers on papers.order_id= deposits.orderid where userid=$id");
+            return $query;
+        }
+        public function sum_deposit($id)
+        {
+            $query = $this->db->query("select sum(amount) amount from deposits where userid = $id");
+            return $query;
+        }
+        public function sum_withdrawals($id)
+        {
+            $query = $this->db->query("select sum(amount) amount from withdrawals where userid = $id");
+            return $query;
+        }
     
    
 }

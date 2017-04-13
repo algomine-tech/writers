@@ -140,8 +140,9 @@
                   </div>
 
                   <div class="form-group ">
-                    <button class="btn btn-t-primary btn-theme">Continue</button>
+                     <?php echo form_submit('submit', 'Continue','class="btn btn-t-primary btn-theme"');?>
                   </div>
+                 
                 <?php echo form_close();?>
 
                 <div class="white-space-10"></div>

@@ -10,6 +10,7 @@ use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
 use PayPal\Api\ItemList;
+use PayPal\Api\Payee;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
@@ -75,8 +76,8 @@ $transaction->setAmount($amount)
 // payment approval/ cancellation.
 $baseUrl = getBaseUrl();
 $redirectUrls = new RedirectUrls();
-$redirectUrls->setReturnUrl("$baseUrl/map/execute_payment?success=true")
-    ->setCancelUrl("$baseUrl/map/cancel_buy?success=false");
+$redirectUrls->setReturnUrl("$baseUrl/paypal/execute_payment?success=true")
+    ->setCancelUrl("$baseUrl/paypal/execute_payment?success=false");
 
 // ### Payment
 // A Payment Resource; create one using
