@@ -106,7 +106,7 @@ class Auth extends CI_Controller {
 				'placeholder'=>'password'
 			);
 
-			$this->load->view('theme/auth/login', $this->data);
+			$this->render_page('theme/auth/login', $this->data);
 		}
 	}
 
@@ -931,8 +931,5 @@ class Auth extends CI_Controller {
         $this->load->view('theme/footer');
     
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

@@ -8,8 +8,4 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php/$1 [L]
 
-<<<<<<< HEAD
 </IfModule>
-=======
-</IfModule>
->>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

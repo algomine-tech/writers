@@ -29,7 +29,7 @@
                         <td><?php echo $detail->topic; ?></td>
                         <td class="center"> $<?php echo number_format($detail->amount,2); ?></td>
                         <td class="center"><?php echo $detail->depositedon; ?></td>
-                        <td class="center"> $<?php ?></td>
+                        <td class="center"> $<?php echo $able ; ?></td>
                     </tr>
                     <?php
                 }

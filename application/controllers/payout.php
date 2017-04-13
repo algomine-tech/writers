@@ -14,7 +14,7 @@ class Payout extends CI_Controller
     public function pre()
     {
         //$id = $this->uri->segment(3);
-        $id = '10';
+        $id = '14';
      $details = $this->Paypal_model->deposits($id)->result(); 
      $this->data['details'] = $details;
 
@@ -63,7 +63,7 @@ class Payout extends CI_Controller
         if ($this->form_validation->run() != false) {
             $EMAIL_paypal = $this->input->post('email');
             $AMOUNT = round($this->input->post('amount'), 2, PHP_ROUND_HALF_DOWN);
-        $id = '10';
+        $id = '14';
             $data_user = $this->db->where('id', $id)->get('users')->row();
          //   $Minimumbalance = $data_user->balance;
             $Minimumbalance = 40;
