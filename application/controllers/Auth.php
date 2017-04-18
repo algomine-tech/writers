@@ -76,7 +76,7 @@ class Auth extends CI_Controller {
 				//if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('auth/dashboard', 'refresh');
+				redirect('orders/index', 'refresh');
 			}
 			else
 			{
@@ -928,7 +928,7 @@ class Auth extends CI_Controller {
         $this->load->view('theme/header');
         //$this->load->view('theme/sidebar');
         $this->load->view($view, $this->viewdata, $returnhtml);
-        $this->load->view('theme/footer');
+        $this->load->view('theme/footer1');
     
     }
 

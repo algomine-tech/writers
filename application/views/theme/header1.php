@@ -9,9 +9,9 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Font Awesome -->
-<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
-<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   
   
   <link rel="apple-touch-icon" href="<?= base_url() ?>assets/theme/images/apple-touch-icon.png">
@@ -70,13 +70,26 @@
                  <!-- Main logo-->
                  LOGO                  
               <ul class="nav navbar-nav navbar-right">
-                <li class="link-btn"><a href="<?= site_url('auth/logout'); ?>"><span class="btn btn-theme btn-pill btn-xs btn-line">Log Out</span></a></li>
+                <li class="link-btn"><a href="login.html"><span class="btn btn-theme btn-pill btn-xs btn-line">Login</span></a></li>
+                <li class="link-btn"><a href="register.html"><span class="btn btn-theme  btn-pill btn-xs btn-line">Register</span></a></li>
               </ul>
             </div>
           </div>
         </nav><!-- end main navbar -->
-    
-     </header><!-- end main-header -->
+
+        <!-- mobile navbar -->
+        <div class="container">
+          <nav class="mobile-nav hidden-md hidden-lg">
+            <a href="#" class="btn-nav-toogle first">
+              <span class="bars"></span>
+              Menu
+            </a>
+          </nav>
+        </div><!-- mobile navbar -->
+
+      </header><!-- end main-header -->
+
+
 
       
 

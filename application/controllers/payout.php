@@ -13,8 +13,7 @@ class Payout extends CI_Controller
     }
     public function pre()
     {
-        //$id = $this->uri->segment(3);
-        $id = '14';
+     $id = $this->session->userdata('user_id');
      $details = $this->Paypal_model->deposits($id)->result(); 
      $this->data['details'] = $details;
 
@@ -57,29 +56,48 @@ class Payout extends CI_Controller
     public function payout()
     {
         //$id = $this->session->userdata('loged_in');
+        $id = $this->session->userdata('user_id');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'PayPal Email', 'required|valid_email');
         $this->form_validation->set_rules('amount', 'withdrawable Amount', 'required');
         if ($this->form_validation->run() != false) {
             $EMAIL_paypal = $this->input->post('email');
-            $AMOUNT = round($this->input->post('amount'), 2, PHP_ROUND_HALF_DOWN);
-        $id = '14';
+            $AMOUNT = round($this->input->post('amount'), 2, PHP_ROUND_HALF_DOWN);    
             $data_user = $this->db->where('id', $id)->get('users')->row();
          //   $Minimumbalance = $data_user->balance;
-            $Minimumbalance = 40;
+            $Minimumbalance = 0;
             if ($AMOUNT > 0 && $AMOUNT >= $Minimumbalance) {
-                include APPPATH.'libraries/PayPal-PHP-SDK/vendor/paypal/rest-api-sdk-php/sample/payouts/CreateSingePayout.php';
-               /* $balance = round($MONEY_balance - $AMOUNT, 5, PHP_ROUND_HALF_DOWN);
-                $this->db->where('id', $data_user->id)->update('users', array('balance' => $balance)); */
-                $data_insert = array(
-                    'amount	' => $AMOUNT,
-                    'userid' => $data_user->id,
-                    'withdrawnon' => time(),
-                    'currency' => 'USD',
-                    'paypal_email'=>$EMAIL_paypal,
-                    'status'=>0,
-                 );
-                $this->db->insert('withdrawals', $data_insert);
+            $paydata = include APPPATH.'libraries/PayPal-PHP-SDK/vendor/paypal/rest-api-sdk-php/sample/payouts/CreateSingePayout.php';
+            $items = json_decode($paydata, TRUE);
+
+               if ($items['items'][0]['transaction_status'] === 'SUCCESS' ) {
+                    $data_insert = array(
+                        'amount ' => $AMOUNT,
+                        'userid' => $data_user->id,
+                        'withdrawnon' => time(),
+                        'currency' => 'USD',
+                        'paypal_email'=>$EMAIL_paypal,
+                        'status'=>0,
+                     );
+                    $this->db->insert('withdrawals', $data_insert);
+                   $output = "PayOut successful";
+                   $this->session->set_flashdata('message', $output);
+                   redirect('paypal/pre');
+               }elseif ( $items['items'][0]['transaction_status'] === 'UNCLAIMED') {
+                   $output = "The Paypal Email is unconfirmed, Ensure the email address is same as Paypal email";
+                   $this->session->set_flashdata('message', $output);
+                   redirect('paypal/pre');
+               }
+               elseif ($items['items'][0]['transaction_status'] === 'FAILED') {
+                   $output = "Your transaction was Unsuccessfull try again later";
+                   $this->session->set_flashdata('message', $output);
+                   redirect('paypal/pre');
+               } 
+                
+            }else{
+                $output = "your balance is below 40 Dollars";
+                $this->session->set_flashdata('message', $output);
+                redirect('paypal/pre');
             }
         } else {
             $error = $this->form_validation->error_array();
@@ -88,7 +106,7 @@ class Payout extends CI_Controller
                 $output .= '<li>'.$key.': '.$val.'</li>';
             }
             $output .= '</ol>';
-            $this->session->set_flashdata('message_error', $output);
+            $this->session->set_flashdata('message', $output);
         }
         redirect('paypal/pre');
     }
@@ -125,7 +143,7 @@ class Payout extends CI_Controller
         $this->load->view('theme/header');
         //$this->load->view('theme/sidebar');
         $this->load->view($view, $this->viewdata, $returnhtml);
-        $this->load->view('theme/footer');
+        $this->load->view('theme/footer1');
     
     }
 }

@@ -75,7 +75,7 @@
                       <div class="row">
                         <div class="col-md-1 hidden-sm hidden-xs"><div class="img-item"><img src="./assets/theme/images/company-logo/4.jpg" alt=""></div></div>
                         <div class="col-md-11">
-                          <h3 class="no-margin-top"><a href="<?= base_url() ?>orders/all_orders/<?php echo $row->orderid; ?>" class=""><?php echo $row->subject.",  ".$row->papertype; ?></a></h3>
+                          <h3 class="no-margin-top"><a href="<?= base_url() ?>orders/load_order/<?php echo $row->orderid; ?>" class=""><?php echo $row->subject.",  ".$row->papertype; ?></a></h3>
                           Topic: <B><?php echo $row->topic; ?></B><br>
                           by Client: <B><?php echo $row->client; ?></B><br>
                           Rating: <B><?php echo $row->levelname; ?></B> 

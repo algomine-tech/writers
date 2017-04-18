@@ -19,12 +19,12 @@ class Orders extends MY_Controller
           }
           elseif($this->session->userdata('groupid')==3)
           {
-		  $where="where orderid in(select orderid from writerorders where id in(select writerorderid from editoraorders userid='$userid')) and raterid in(select user_id from users_groups where group_id=3)";
+		  $where="where orderid in(select orderid from writerorders where id in(select writerorderid from editoraorders where userid='$userid')) and raterid in(select user_id from users_groups where group_id=4)";
 		  $this->data['ratings']=$this->orders_model->getEditor_A_Rating($where)->result();
           }
           elseif($this->session->userdata('groupid')==4)
           {
-		 $where="where orderid in(select orderid from writerorders where id in(select writerorderid from editoraorders where id in(select editorordersid from editor_b_orders where userid='$userid'))) and raterid in(select user_id from users_groups where group_id=4)";
+		 $where="where orderid in(select orderid from writerorders where id in(select writerorderid from editoraorders where id in(select editorordersid from editor_b_orders where userid='$userid'))) and raterid in(select user_id from users_groups where group_id=5)";
 		 $this->data['ratings']=$this->orders_model->getEditor_B_Rating($where)->result();
           }
    }
@@ -87,7 +87,7 @@ class Orders extends MY_Controller
             $userid=$this->session->userdata('user_id');
             $wheres="where userid='$userid'";
             $this->data['orders']=$this->orders_model->getParticularOrder($where)->result();
-            if($this->session->userdata('groupid')==2){
+        if($this->session->userdata('groupid')==2){
 		   $this->data['numberoforders']=$this->orders_model->getNumber_WriterOrders($wheres)->result();
 	    }
 	    elseif($this->session->userdata('groupid')==3)
@@ -121,8 +121,8 @@ class Orders extends MY_Controller
 	    }
 	    elseif($this->session->userdata('groupid')==4)
 	    {
-	            $wheres="where editor_b_orders='$userid' and orderstatusid='$orderstatusid'";
-		    $this->data['orders']=$this->orders_model->getEditor_A_Orders()->result();
+	        $wheres="where editor_b_orders.userid='$userid' and editor_b_orders.orderstatusid='$orderstatusid'";
+		    $this->data['orders']=$this->orders_model->getEditor_B_Order_By_Orderstatus($wheres)->result();
 		    $where="where userid='$userid'";
 		    $this->data['numberoforders']=$this->orders_model->getNumber_Editor_B_Orders($where)->result();
 	    }
@@ -151,7 +151,7 @@ class Orders extends MY_Controller
     	            $where="where userid='$userid' and orderstatusid in(1,4)";
     	            $this->data['pendingorders']=$this->orders_model->get_pending_writer_orders($where)->result();
     	            foreach ($this->data['pendingorders'] as $num ){}; 	            
-    	            if($num->cnt>8){
+    	            if($num->cnt>1){
     	            $this->session->set_flashdata('message',  'You have Pending Orders. Please Finish them before taking another');
     	            }elseif($rating<$levelid){
     	            $this->session->set_flashdata('message',  'Your Rating Level Is Below The required Rating');
@@ -161,7 +161,6 @@ class Orders extends MY_Controller
     	            $whwe="where orderid='$orderid'";
     	            $this->data['ord']=$this->orders_model->getWriterOrder($whwe)->result();
     	            if(!empty($this->data['ord'])){
-    	                  $this->orders_model->Un_Lock_tables();
     	                  $this->session->set_flashdata('message',  'Order already taken');
 		    }else{    	            
 			  $where="where orders.id=".$id;
@@ -183,9 +182,11 @@ class Orders extends MY_Controller
 				      );
 			      if($this->orders_model->save_writerorder_application($data))
 			      {
+			      $this->orders_model->Un_Lock_tables();
 			      $this->session->set_flashdata('message',  ' Successfully Applied');
 			      }else{
 			      $this->session->set_flashdata('message',  ' Not Successfull');
+			      $this->orders_model->Un_Lock_tables();
 			      }
 		    }
 	       }
@@ -381,7 +382,7 @@ class Orders extends MY_Controller
                 $remarks =$this->input->post('remarks');
                 
                 $config['upload_path'] = './uploads/';
-		$config['allowed_types'] = 'docx|doc|pdf';
+		        $config['allowed_types'] = 'docx|doc|pdf';
 		
 		$this->load->library('upload', $config);
 
@@ -389,7 +390,7 @@ class Orders extends MY_Controller
 		{
 			$error = array('error' => $this->upload->display_errors());
 
-			$this->render_page('theme/orders/submit_paper', $error);//print_r($error);
+			$this->render_page('theme/orders/submit_paper', $error);print_r($error);
 		}
 		else
 		{
@@ -620,12 +621,12 @@ class Orders extends MY_Controller
 	    }
 	    elseif($this->session->userdata('groupid')==3)
 	    {
-		   $where="where ratings.orderid in(select orderid from writerorders where id in(select writerorderid from editoraorders where userid='$userid')) and raterid in(select user_id from users_groups where group_id=3)";
+		   $where="where ratings.orderid in(select orderid from writerorders where id in(select writerorderid from editoraorders where userid='$userid')) and raterid in(select user_id from users_groups where group_id=4)";
 		   $this->data['ratingdata']=$this->orders_model->getRating_List($where)->result();
 	    }
 	    elseif($this->session->userdata('groupid')==4)
 	    {
-	            $where="where orderid in(select orderid from writerorders where id in(select writerorderid from editoraorders where id in(select editorordersid from editor_b_orders where userid='$userid'))) and raterid in(select user_id from users_groups where group_id=4)";
+	            $where="where orderid in(select orderid from writerorders where id in(select writerorderid from editoraorders where id in(select editorordersid from editor_b_orders where userid='$userid'))) and raterid in(select user_id from users_groups where group_id=5)";
 		    $this->data['ratingdata']=$this->orders_model->getRating_List($where)->result();
 	    }  
                 
@@ -646,13 +647,13 @@ class Orders extends MY_Controller
 	    elseif($this->session->userdata('groupid')==3)
 	    {
 	           $this->data['numberoforders']=$this->orders_model->getNumber_Editor_A_Orders($wheres)->result();
-		   $where="where ratings.orderid in(select orderid from writerorders where id in(select writerorderid from editoraorders where userid='$userid')) and raterid in(select user_id from users_groups where group_id=3) and ratings.orderid='$orderid'";
+		   $where="where ratings.orderid in(select orderid from writerorders where id in(select writerorderid from editoraorders where userid='$userid')) and raterid in(select user_id from users_groups where group_id=4) and ratings.orderid='$orderid'";
 		   $this->data['ratingdata']=$this->orders_model->getRating_List_Per_Order($where)->result();
 	    }
 	    elseif($this->session->userdata('groupid')==4)
 	    {
 	            $this->data['numberoforders']=$this->orders_model->getNumber_Editor_B_Orders($wheres)->result();
-	            $where="where orderid in(select orderid from writerorders where id in(select writerorderid from editoraorders where id in(select editorordersid from editor_b_orders where userid='$userid'))) and raterid in(select user_id from users_groups where group_id=4) and ratings.orderid='$orderid'";
+	            $where="where orderid in(select orderid from writerorders where id in(select writerorderid from editoraorders where id in(select editorordersid from editor_b_orders where userid='$userid'))) and raterid in(select user_id from users_groups where group_id=5) and ratings.orderid='$orderid'";
 		    $this->data['ratingdata']=$this->orders_model->getRating_List_Per_Order($where)->result();
 	    }  
                 

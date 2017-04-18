@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 /*
  * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
  *
@@ -416,7 +412,4 @@ jQuery.extend( jQuery.easing,
  *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
  * OF THE POSSIBILITY OF SUCH DAMAGE. 
  *
->>>>>>> 52d7e624c7fda24167d4c4a56349a01a08cb5a17
-=======
->>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
  */

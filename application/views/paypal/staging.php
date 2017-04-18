@@ -10,6 +10,12 @@
                 </div>
             </div>
             <h2 align="center">Staging Area</h2>
+            <script>
+                 <?php
+                 if(!empty($this->session->flashdata('message'))){?>
+                 alert("<?php echo $this->session->flashdata('message'); ?>");
+                 <?php } ?>
+                 </script>
             <table class="table table-bordered">
                 <thead>
                 <tr>

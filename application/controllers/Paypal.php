@@ -63,7 +63,7 @@ class Paypal extends CI_Controller
         $this->load->view('theme/header');
         //$this->load->view('theme/sidebar');
         $this->load->view($view, $this->viewdata, $returnhtml);
-        $this->load->view('theme/footer');
+        $this->load->view('theme/footer1');
     
     }
 }
