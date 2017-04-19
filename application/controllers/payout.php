@@ -66,6 +66,17 @@ class Payout extends CI_Controller
             $data_user = $this->db->where('id', $id)->get('users')->row();
          //   $Minimumbalance = $data_user->balance;
             $Minimumbalance = 0;
+             if($this->session->userdata('groupid')==2){
+                  $Minimumbalance = 120;
+        }
+        elseif($this->session->userdata('groupid')==3)
+        {
+            $Minimumbalance = 80;
+        }
+        elseif($this->session->userdata('groupid')==4)
+        {
+           $Minimumbalance = 40;
+        }
             if ($AMOUNT > 0 && $AMOUNT >= $Minimumbalance) {
             $paydata = include APPPATH.'libraries/PayPal-PHP-SDK/vendor/paypal/rest-api-sdk-php/sample/payouts/CreateSingePayout.php';
             $items = json_decode($paydata, TRUE);

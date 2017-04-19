@@ -220,7 +220,6 @@ class Orders extends MY_Controller
 		      $wher=" where editoraorders.writerorderid=".$writerdata->id;
 		      $this->data['ord']=$this->orders_model->getEditor_A_Order($wher)->result();
 		      if(!empty($this->data['ord'])){
-			    $this->orders_model->Un_Lock_tables();
 			    $this->session->set_flashdata('message',  'Order already taken');
 		      }else{
 		      //Proceed and save the picked order
@@ -245,8 +244,10 @@ class Orders extends MY_Controller
 				  );
 			  if(!$this->orders_model->save_editor_A_order_application($data))
 			  { 
+			  $this->orders_model->Un_Lock_tables();
 			  $this->session->set_flashdata('message',  'Not Successfull ');
 			  }else{
+			  $this->orders_model->Un_Lock_tables();
 			  $this->session->set_flashdata('message',  ' Successfully Applied');
 			  }
 		      }
@@ -284,7 +285,6 @@ class Orders extends MY_Controller
 	             $where=" where editor_b_orders.editorordersid=".$editordata->id;
 	             $this->data['ord']=$this->orders_model->getEditor_B_Order($where)->result();
 		      if(!empty($this->data['ord'])){
-			    $this->orders_model->Un_Lock_tables();
 			    $this->session->set_flashdata('message',  'Order already taken');
 		      }else{
 		      $where="where orders.id=".$id;
@@ -311,8 +311,10 @@ class Orders extends MY_Controller
 				  );
 			  if($this->orders_model->save_editor_B_order_application($data))
 			  {
+			  $this->orders_model->Un_Lock_tables();
 			  $this->session->set_flashdata('message',  ' Successfully Applied');
 			  }else{
+			  $this->orders_model->Un_Lock_tables();
 			  $this->session->set_flashdata('message',  ' Not Successfull');
 			  }
 	             }

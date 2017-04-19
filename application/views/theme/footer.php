@@ -99,11 +99,15 @@
 				<h4 class="no-margin-top"><a href="<?= base_url() ?>payout/pre" class="">Payments</a></h4>
 			    </div>
 			    <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>profile/profile" class="">Profile</a></h4>
+        <h4 class="no-margin-top"><a href="<?= base_url() ?>profile/profile" class="">Profile</a></h4>
+          </div>
+          <div>
+				<h4 class="no-margin-top"><a href="<?= base_url() ?>progress/index" class="">Progress</a></h4>
 			    </div> 
 			    <div>
 				<h4 class="no-margin-top"><a href="<?= base_url() ?>orders/ratings" class="">Rating:<?php if(!empty($ratings)){ echo $rate->rate; } ?></a></h4>
-			    </div>                        
+			    </div>
+                            
                         </div>
                       </div>
                     </div><!-- end item list -->

@@ -34,7 +34,15 @@
   
 </head>
 <style type="text/css">
-
+#myProgress {
+    width: 100%;
+    background-color: grey;
+}
+#myBar {
+    width: 1%;
+    height: 30px;
+    background-color: green;
+}
   .dataTables_filter {
    width: 100%;
    float: right;

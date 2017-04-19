@@ -46,4 +46,16 @@ class Country_model extends CI_Model {
         }
         return array_combine($id, $name);
     }
+    public function getProgress($value)
+    {
+
+        $query = $this->db->select('*')
+                          ->where('userid', $value)
+                          ->from('writerorders')
+                          ->join('papers','papers.order_id=writerorders.orderid','left')
+                          ->order_by('writerorders.appliedon', 'desc')
+                          ->get()
+                          ->result();
+        return $query;
+    }
 }
