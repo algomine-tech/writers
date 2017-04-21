@@ -22,6 +22,6 @@ try {
 }
 
 // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
- ResultPrinter::printResult("Get Payout Batch Status", "PayoutBatch", $output->getBatchHeader()->getPayoutBatchId(), null, $output);
+// ResultPrinter::printResult("Get Payout Batch Status", "PayoutBatch", $output->getBatchHeader()->getPayoutBatchId(), null, $output);
 
 return $output;

@@ -20,15 +20,15 @@
                     <?php if ($progress->orderstatusid == 1): ?>
                         <p><?= $progress->topic ?><br><small>On-Progress</small> </p> 
                         <div class="progress">
-                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100" style="width:14%">
-                          14%
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width:8%">
+                          8%
                         </div>
                       </div>
                     <?php endif ?>
                     <?php if ($progress->orderstatusid == 2): ?>
                         <p><?= $progress->topic ?><br><small>Submitted</small></p>
                         <div class="progress">
-                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100" style="width:28%">
+                        <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100" style="width:28%">
                           28%
                         </div>
                       </div>
@@ -36,7 +36,7 @@
                     <?php if ($progress->orderstatusid == 3): ?>
                         <p><?= $progress->topic ?><br><small>Approved</small></p>
                         <div class="progress">
-                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100" style="width:42%">
+                        <div class="progress-bar progress-bar-striped progress-bar-info active" role="progressbar" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100" style="width:42%">
                           48%
                         </div>
                       </div>
@@ -44,7 +44,7 @@
                     <?php if ($progress->orderstatusid == 4): ?>
                         <p><?= $progress->topic ?><br><small>Revision</small></p>
                         <div class="progress">
-                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100" style="width:14%">
+                        <div class="progress-bar progress-bar-striped progress-bar-warning active" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100" style="width:14%">
                           18%
                         </div>
                       </div>

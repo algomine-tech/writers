@@ -66,14 +66,17 @@ $payouts->setSenderBatchHeader($senderBatchHeader)
 // For Sample Purposes Only.
 $request = clone $payouts;
 
+//if using try catch comment this out
+$output = $payouts->createSynchronous($apiContext);
+
 // ### Create Payout
-try {
-    $output = $payouts->createSynchronous($apiContext);
-} catch (Exception $ex) {
-    // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
- 	ResultPrinter::printError("Created Single Synchronous Payout", "Payout", null, $request, $ex);
-    exit(1);
-}
+// try {
+//     $output = $payouts->createSynchronous($apiContext);
+// } catch (Exception $ex) {
+//     // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+//  	//ResultPrinter::printError("Created Single Synchronous Payout", "Payout", null, $request, $ex);
+//     exit(1);
+// }
 
 // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
 //ResultPrinter::printResult("Created Single Synchronous Payout", "Payout", $output->getBatchHeader()->getPayoutBatchId(), $request, $output);

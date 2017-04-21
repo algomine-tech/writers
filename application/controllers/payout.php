@@ -29,10 +29,7 @@ class Payout extends CI_Controller
              }else{
 
                 $this->data['able'] = ($sum_depo->amount-$sum_withdrawal->amount);
-             }
-
-     
-     
+             } 
      $this->render_page('paypal/staging', $this->data);  
     }
     
@@ -55,17 +52,15 @@ class Payout extends CI_Controller
      */
     public function payout()
     {
-        //$id = $this->session->userdata('loged_in');
         $id = $this->session->userdata('user_id');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'PayPal Email', 'required|valid_email');
-        $this->form_validation->set_rules('amount', 'withdrawable Amount', 'required');
-        if ($this->form_validation->run() != false) {
+        $this->form_validation->set_rules('amount', 'Withdrawable Amount', 'required');
+        if ($this->form_validation->run() == true) {
             $EMAIL_paypal = $this->input->post('email');
             $AMOUNT = round($this->input->post('amount'), 2, PHP_ROUND_HALF_DOWN);    
             $data_user = $this->db->where('id', $id)->get('users')->row();
-         //   $Minimumbalance = $data_user->balance;
-            $Minimumbalance = 0;
+         
              if($this->session->userdata('groupid')==2){
                   $Minimumbalance = 120;
         }
@@ -81,7 +76,7 @@ class Payout extends CI_Controller
             $paydata = include APPPATH.'libraries/PayPal-PHP-SDK/vendor/paypal/rest-api-sdk-php/sample/payouts/CreateSingePayout.php';
             $items = json_decode($paydata, TRUE);
 
-               if ($items['items'][0]['transaction_status'] === 'SUCCESS' ) {
+               if ($items['items'][0]['transaction_status'] == 'SUCCESS' ) {
                     $data_insert = array(
                         'amount ' => $AMOUNT,
                         'userid' => $data_user->id,
@@ -91,24 +86,42 @@ class Payout extends CI_Controller
                         'status'=>0,
                      );
                     $this->db->insert('withdrawals', $data_insert);
-                   $output = "PayOut successful";
+                   $output = "Pay Out Was successful";
                    $this->session->set_flashdata('message', $output);
-                   redirect('paypal/pre');
-               }elseif ( $items['items'][0]['transaction_status'] === 'UNCLAIMED') {
+                   redirect('payout/pre');
+               }elseif ( $items['items'][0]['transaction_status'] == 'UNCLAIMED') {
                    $output = "The Paypal Email is unconfirmed, Ensure the email address is same as Paypal email";
                    $this->session->set_flashdata('message', $output);
-                   redirect('paypal/pre');
+                   redirect('payout/pre');
                }
-               elseif ($items['items'][0]['transaction_status'] === 'FAILED') {
+               elseif ($items['items'][0]['transaction_status'] == 'FAILED') {
                    $output = "Your transaction was Unsuccessfull try again later";
                    $this->session->set_flashdata('message', $output);
-                   redirect('paypal/pre');
-               } 
+                   redirect('payout/pre');
+               }else {
+                    $output = "Your transaction was Unsuccessfull try again later";
+                   $this->session->set_flashdata('message', $output);
+                   redirect('payout/pre');
+               }
                 
             }else{
-                $output = "your balance is below 40 Dollars";
-                $this->session->set_flashdata('message', $output);
-                redirect('paypal/pre');
+                if($this->session->userdata('groupid')==2){
+                    $output = "Your balance is below 120 Dollars ";
+                    $this->session->set_flashdata('message', $output);
+                    redirect('payout/pre');
+                }
+                elseif($this->session->userdata('groupid')==3)
+                {
+                   $output = "Your balance is below 80 Dollars ";
+                    $this->session->set_flashdata('message', $output);
+                    redirect('payout/pre');
+                }
+                elseif($this->session->userdata('groupid')==4)
+                {
+                   $output = "Your balance is below 40 Dollars ";
+                    $this->session->set_flashdata('message', $output);
+                    redirect('payout/pre');
+                }
             }
         } else {
             $error = $this->form_validation->error_array();
@@ -119,7 +132,7 @@ class Payout extends CI_Controller
             $output .= '</ol>';
             $this->session->set_flashdata('message', $output);
         }
-        redirect('paypal/pre');
+        redirect('payout/pre');
     }
     public function _get_csrf_nonce()
     {

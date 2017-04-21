@@ -24,6 +24,6 @@ try {
 }
 
 // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
- ResultPrinter::printResult("Get Payout Item Status", "PayoutItem", $output->getPayoutItemId(), null, $output);
+ //ResultPrinter::printResult("Get Payout Item Status", "PayoutItem", $output->getPayoutItemId(), null, $output);
 
 return $output;
