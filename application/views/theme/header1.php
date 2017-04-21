@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>BPS | Portal</title>
+  <title>Writers</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Font Awesome -->
@@ -78,8 +78,8 @@
                  <!-- Main logo-->
                  LOGO                  
               <ul class="nav navbar-nav navbar-right">
-                <li class="link-btn"><a href="login.html"><span class="btn btn-theme btn-pill btn-xs btn-line">Login</span></a></li>
-                <li class="link-btn"><a href="register.html"><span class="btn btn-theme  btn-pill btn-xs btn-line">Register</span></a></li>
+                <li class="link-btn"><a href="<?= site_url('auth/login'); ?>"><span class="btn btn-theme btn-pill btn-xs btn-line">Login</span></a></li>
+                <li class="link-btn"><a href="<?= site_url('auth/create_user'); ?>"><span class="btn btn-theme  btn-pill btn-xs btn-line">Register</span></a></li>
               </ul>
             </div>
           </div>

@@ -80,12 +80,15 @@ class Payout extends CI_Controller
                     $data_insert = array(
                         'amount ' => $AMOUNT,
                         'userid' => $data_user->id,
-                        'withdrawnon' => time(),
+                        'withdrawnon' => date("Y-m-d"),
                         'currency' => 'USD',
                         'paypal_email'=>$EMAIL_paypal,
                         'status'=>0,
                      );
                     $this->db->insert('withdrawals', $data_insert);
+                    $data_depo = array(
+                        'status' => 1); 
+                    $this->db->where('userid',$data_user->id)->update('deposits', $data_depo);
                    $output = "Pay Out Was successful";
                    $this->session->set_flashdata('message', $output);
                    redirect('payout/pre');

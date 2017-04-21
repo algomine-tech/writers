@@ -97,7 +97,7 @@ class Auth extends CI_Controller {
 				'type'  => 'text',
 				'value' => $this->form_validation->set_value('identity'),
 				'class'=>'form-control',
-				'placeholder'=> 'username'
+				'placeholder'=> 'Email Address'
 			);
 			$this->data['password'] = array('name' => 'password',
 				'id'   => 'password',
@@ -925,7 +925,7 @@ class Auth extends CI_Controller {
         $this->viewdata = (empty($data)) ? $this->data: $data;
 
        
-        $this->load->view('theme/header');
+        $this->load->view('theme/header1');
         //$this->load->view('theme/sidebar');
         $this->load->view($view, $this->viewdata, $returnhtml);
         $this->load->view('theme/footer1');

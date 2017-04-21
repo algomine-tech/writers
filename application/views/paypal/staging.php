@@ -23,23 +23,24 @@
                     <th>Job Name</th>
                     <th class="center">Price</th>
                     <th class="center">Date</th>
-                    <th class="center">Total</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
                 foreach($details as $detail) {
+                    if ( $detail->status == 0) {
                     ?>
                     <tr>
                         <td><?php echo $detail->id; ?></td>
                         <td><?php echo $detail->topic; ?></td>
                         <td class="center"> $<?php echo number_format($detail->amount,2); ?></td>
                         <td class="center"><?php echo $detail->depositedon; ?></td>
-                        <td class="center"> $<?php echo $able ; ?></td>
-                    </tr>
-                    <?php
+                        <?php
+                        }
                 }
                 ?>
+                    </tr>
+                    
                 </tbody>
             </table>
             <div class="row clearfix">
@@ -51,7 +52,7 @@
                     <table class="table">
                         <tbody>
                         <?php
-                foreach($details as $detail) {
+                foreach($details as $detail) {}
                     ?>
                         <tr>
                             <td><strong>Email</strong></td>
@@ -64,9 +65,7 @@
                         <tr>
                             <td class="center" colspan="2"><button type="submit" value="Submit"><img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"></button></td>
                         </tr>
-                        <?php
-                }
-                ?>
+              
                         </tbody>
                     </table>
                    <?php echo form_close();?>

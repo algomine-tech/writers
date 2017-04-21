@@ -60,53 +60,54 @@
                                }
                         }
                      
-                        ?>
+                        ?>       
                             <div>
 				<img src="<?= base_url() ?>/images/pass.jpg" alt="" width="40%">
 				<?php echo $this->session->userdata('first_name'); ?> <?php echo $this->session->userdata('last_name'); ?>
                             </div>
+        <ul class="list-unstyled" >
 			    <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>orders/all_orders" class="">Public Orders</a></h4>
+				<li><a href="<?= base_url() ?>orders/all_orders" class="">Public Orders</a></li>
 			    </div>
 			    <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders/<?php echo 1; ?>" class="">Applied Public Orders(<?php echo $public; ?>)</a></h4>
+				<li><a href="<?= base_url() ?>orders/load_orders/<?php echo 1; ?>" class="">Applied Public Orders(<?php echo $public; ?>)</a></li>
 			    </div>
 			    <?php if($this->session->userdata('groupid')==2){ ?>
 			    <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders" class="">Private Orders(<?php 
+				<li><a href="<?= base_url() ?>orders/load_orders" class="">Private Orders(<?php 
 				
-				?>)</a></h4>
+				?>)</a></li>
 			    </div>
 			    <?php } ?>
 			    <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders/2" class="">Submitted Orders(<?php echo $submited; ?>)</a></h4>
-			    </div>
-			    <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders/4" class="">Revision Orders(<?php echo $revision; ?>)</a></h4>
+				<li><a href="<?= base_url() ?>orders/load_orders/2" class="">Submitted Orders(<?php echo $submited; ?>)</a></li>
+			 
+				<li><a href="<?= base_url() ?>orders/load_orders/4" class="">Revision Orders(<?php echo $revision; ?>)</a></li>
 			    </div>
 			    <?php if($this->session->userdata('groupid')==3 or $this->session->userdata('groupid')==4){ ?>
 			    <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders/7" class="">Resubmited For Revision Orders(<?php echo $resubmition; ?>)</a></h4>
+				<li><a href="<?= base_url() ?>orders/load_orders/7" class="">Resubmited For Revision Orders(<?php echo $resubmition; ?>)</a></li>
 			    </div>
 			    <?php } ?>
 			    <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders/3" class="">Approved Orders(<?php echo $approved; ?>)</a></h4>
+				<li><a href="<?= base_url() ?>orders/load_orders/3" class="">Approved Orders(<?php echo $approved; ?>)</a></li>
 			    </div>
 			    <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>orders/load_orders/5/6" class="">Archived Orders(<?php echo ($accepted+$rejected); ?>)</a></h4>
+				<li><a href="<?= base_url() ?>orders/load_orders/5/6" class="">Archived Orders(<?php echo ($accepted+$rejected); ?>)</a></li>
 			    </div>
 			    <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>payout/pre" class="">Payments</a></h4>
+				<li><a href="<?= base_url() ?>payout/pre" class="">Payments</a></li>
 			    </div>
 			    <div>
-        <h4 class="no-margin-top"><a href="<?= base_url() ?>profile/profile" class="">Profile</a></h4>
+        <li><a href="<?= base_url() ?>profile/profile" class="">Profile</a></li>
           </div>
           <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>progress/index" class="">Progress</a></h4>
+				<li><a href="<?= base_url() ?>progress/index" class="">Progress</a></li>
 			    </div> 
 			    <div>
-				<h4 class="no-margin-top"><a href="<?= base_url() ?>orders/ratings" class="">Rating:<?php if(!empty($ratings)){ echo $rate->rate; } ?></a></h4>
+				<li><a href="<?= base_url() ?>orders/ratings" class="">Rating:<?php if(!empty($ratings)){ echo $rate->rate; } ?></a></li>
 			    </div>
+          </ul>
                             
                         </div>
                       </div>
@@ -212,6 +213,13 @@
 
 
 });
+   $(function () {
+      $('#affix').affix({
+         offset: {
+            top: 60  
+         }
+      });
+   });
 </script>
 
 </body>

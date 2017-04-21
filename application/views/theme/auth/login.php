@@ -1,38 +1,46 @@
-<div class="login-box">
-  <div class="login-logo">
-    <h3>BPS ERP</h3>
+<div class="body-content clearfix" >
 
-  </div>
-  <!-- /.login-logo -->
-  <div class="login-box-body">
-  <div><img src="<?= base_url() ?>assets/img/LOGO.png" class="img-responsive"></div>
-    <p class="login-box-msg"><div id="infoMessage"><?php echo $message;?></div></p>
+        <div class="block-section bg-color4">
+          <div class="container">
+            <div class="panel panel-md">
+              <div class="panel-body">
+                <div class="row">
 
-    <?php echo form_open("auth/login");?>
-      <div class="form-group has-feedback">
-           <?php echo form_input($identity);?>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <?php echo form_input($password);?>
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-   
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                  <h2 class="title"><a href="#">Writers </a></h2>
+                  <hr>
+                  <div class="job-meta">
+          </div>
+                  <div class="col-md-offset-2 col-md-8">
+                    <!-- /.login-logo -->
+                  <p class="login-box-msg"><div id="infoMessage"><?php echo $message;?></div></p>
+                  <?php echo form_open("auth/login");?>
+                    <div class="form-group has-feedback">
+                         <?php echo form_input($identity);?>
+                      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                      <?php echo form_input($password);?>
+                      <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div class="row">
+                 
+                      <!-- /.col -->
+                      <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                  <?php echo form_close();?>
+                <!-- /.login-box-body -->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="white-space-20"></div>
+          </div>
         </div>
-        <!-- /.col -->
-      </div>
-    <?php echo form_close();?>
-
-
-  </div>
-  <!-- /.login-box-body -->
-</div>
-<!-- /.login-box -->
-
+      </div><!--end body-content -->
 <!-- jQuery 2.2.3 -->
 <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
