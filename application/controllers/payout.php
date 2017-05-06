@@ -173,4 +173,10 @@ class Payout extends CI_Controller
         $this->load->view('theme/footer1');
     
     }
+    public function withdrawal()
+    {
+        $id = $this->session->userdata('user_id');
+        $this->data['withdrawals'] = $this->Paypal_model->withdrawals($id)->result();
+        $this->render_page('paypal/details', $this->data); 
+    }
 }

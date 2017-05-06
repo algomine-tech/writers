@@ -1,31 +1,13 @@
-<!-- main-footer -->
-      <footer class="main-footer">
-
-
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6">
-              <ul class="list-inline link-footer text-center-xs">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-              </ul>
-            </div>
-            <div class="col-sm-6 ">
-              <p class="text-center-xs hidden-lg hidden-md hidden-sm">Stay Connect</p>
-              <div class="socials text-right text-center-xs">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer><!-- end main-footer -->
-    </div><!-- end wrapper page -->
-
+<div class="footer-bottom">
+<div class="wrap">
+   <div class="copy-right">
+     <p>Copyright 2017. All Rights Reserved</p>
+   </div>
+  <div class="copy">
+     
+   </div>
+</div>
+</div>
 
 
 
@@ -66,7 +48,31 @@
     });
   });
 
+  function ajaxFunction(){   
+        //if(e.which == 13) {
+            var message = $('#message').val();
 
+            $.ajax({
+                url: "<?php echo base_url().'Messaging/send'; ?>",
+                alert(message);
+                type: "POST",
+                data: {
+                    "message": message,
+                },
+                dataType: "json",
+                console.log(message);               
+                success:function(response){   
+                    
+                    if(response == "ok")
+                    {
+                        alert("ok");
+                        window.location = "<?php echo base_url().'Messaging/add/'.$this->session->userdata('recipient'); ?>";
+                    }else{
+                        alert('Try Again');
+                    }
+                }
+            });
+        }
 
 </script>
 <script >

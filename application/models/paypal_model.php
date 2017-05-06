@@ -38,6 +38,10 @@ class Paypal_model extends CI_Model {
             $query = $this->db->query("select sum(amount) amount from withdrawals where userid = $id");
             return $query;
         }
-    
+        public function withdrawals($id)
+        {
+            $query = $this->db->query("select * from withdrawals where userid=$id");
+            return $query;
+        }
    
 }

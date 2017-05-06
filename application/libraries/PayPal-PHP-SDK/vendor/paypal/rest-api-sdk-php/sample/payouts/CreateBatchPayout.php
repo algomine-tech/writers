@@ -49,7 +49,7 @@ foreach($G_Items->items as $row){
     $senderItem = new \PayPal\Api\PayoutItem();
     $senderItem->setRecipientType('Email')
         ->setNote('Payment for recent Music : '.$row->name)
-        ->setReceiver('o@s.com')
+        ->setReceiver('lynhmob@gmail.com')
         ->setSenderItemId($row->sku)
         ->setAmount(new \PayPal\Api\Currency('{
             "value":"'.$row->price.'",

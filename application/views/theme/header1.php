@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Writers</title>
+  <title>BPS | Portal</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Font Awesome -->
@@ -31,39 +31,10 @@
   <link href="<?= base_url() ?>assets/theme/css/theme.css" rel="stylesheet">  
   <!-- Your custom css -->
   <link href="<?= base_url() ?>assets/theme/css/theme-custom.css" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   
 </head>
-<style type="text/css">
-#myProgress {
-    width: 100%;
-    background-color: grey;
-}
-#myBar {
-    width: 1%;
-    height: 30px;
-    background-color: green;
-}
-  .dataTables_filter {
-   width: 100%;
-   float: right;
-   text-align: right;
-}
-.table-bordered,.table-bordered>tbody>tr>td,.table-bordered>thead>tr>th{
-  border: 1px solid #3c8dbc;
-}
-.loader {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background: url('page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
-}
-.form-control{
-  border: 1px solid #3c8dbc;
-}
-</style>
+
 <body>
     <!-- wrapper page -->
     <div class="wrapper">
@@ -78,8 +49,8 @@
                  <!-- Main logo-->
                  LOGO                  
               <ul class="nav navbar-nav navbar-right">
-                <li class="link-btn"><a href="<?= site_url('auth/login'); ?>"><span class="btn btn-theme btn-pill btn-xs btn-line">Login</span></a></li>
-                <li class="link-btn"><a href="<?= site_url('auth/create_user'); ?>"><span class="btn btn-theme  btn-pill btn-xs btn-line">Register</span></a></li>
+                <li class="link-btn"><a href="login.html"><span class="btn btn-theme btn-pill btn-xs btn-line">Login</span></a></li>
+                <li class="link-btn"><a href="register.html"><span class="btn btn-theme  btn-pill btn-xs btn-line">Register</span></a></li>
               </ul>
             </div>
           </div>

@@ -8,6 +8,7 @@ class Orders extends MY_Controller
         $this->load->library(array('ion_auth','form_validation'));
         $this->load->helper(array('form', 'url'));
         $this->load->model('orders_model');
+        $this->load->model('Paypal_model');
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
         
         $userid=$this->session->userdata('user_id');
@@ -35,6 +36,20 @@ class Orders extends MY_Controller
           $this->data['page_title'] = 'Orders'; 
           $userid=$this->session->userdata('user_id');
           $where="where userid='$userid'";
+
+          $details = $this->Paypal_model->deposits($userid)->result(); 
+	     $sum_withdrawals = $this->Paypal_model->sum_withdrawals($userid)->result();
+	     $sum_deposit = $this->Paypal_model->sum_deposit($userid)->result();
+	     foreach ($sum_deposit as $sum_depo) {};
+	     foreach ($sum_withdrawals as $sum_withdrawal) {};
+	             if ($sum_withdrawal->amount === null) {
+	                 
+	                 $this->session->set_userdata('able', $sum_depo->amount);
+	             }else{
+
+	                $able = ($sum_depo->amount-$sum_withdrawal->amount);
+	                $this->session->set_userdata('able', $able);
+             } 
           if($this->session->userdata('groupid')==2){
 		  $this->data['orders']=$this->orders_model->getOrders()->result();
 		  $this->data['numberoforders']=$this->orders_model->getNumber_WriterOrders($where)->result();
@@ -102,7 +117,7 @@ class Orders extends MY_Controller
 		  
     }
         
-    function load_orders($orderstatusid)
+    function load_orders($orderstatusid='')
     {
             $this->data['page_header']="Orders";
             $userid=$this->session->userdata('user_id');            

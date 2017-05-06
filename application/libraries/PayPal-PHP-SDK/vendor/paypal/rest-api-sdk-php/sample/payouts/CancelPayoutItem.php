@@ -30,7 +30,7 @@ try {
     }
 } catch (Exception $ex) {
     // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
- 	//ResultPrinter::printError("Cancel Unclaimed Payout Item", "PayoutItem", null, $payoutItemId, $ex);
+ 	ResultPrinter::printError("Cancel Unclaimed Payout Item", "PayoutItem", null, $payoutItemId, $ex);
     exit(1);
 }
 

@@ -17,12 +17,12 @@ class Progress extends CI_Controller
           }
           elseif($this->session->userdata('groupid')==3)
           {
-          //$this->data['progress']=$this->Country_model->getProgressA($userid)->result();
+          $this->data['progress']=$this->Country_model->getProgressA($userid)->result();
           
           }
           elseif($this->session->userdata('groupid')==4)
           {
-          //$this->data['progress']=$this->Country_model->getProgressB($userid)->result();
+          $this->data['progress']=$this->Country_model->getProgressB($userid)->result();
 
           }
           $this->render_page('paypal/progress', $this->data);

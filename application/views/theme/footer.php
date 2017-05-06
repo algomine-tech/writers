@@ -1,14 +1,9 @@
+ <div class="col-md-3">
 
-
-              <div class="col-md-3">
-
-                <!-- box listing -->
-                <div class="block-section-sm box-list-area">
-                  <!-- item list -->  
                   <div class="box-list">
                     <div class="item">
                       <div class="row">                        
-                        <div class="col-md-11">
+                        <div class="col-md-12">
                         <?php 
                         $public=0;
                         $submited=0;
@@ -18,8 +13,8 @@
                         $rejected=0;
                         $resubmition=0;
                          if(empty($numberoforders)){
-				  $numberoforders=array();
-			 }
+                  				  $numberoforders=array();
+                  			 }
 			       
                         foreach ($numberoforders as $num ){
                                 if($num->orderstatusid==1){
@@ -61,51 +56,56 @@
                         }
                      
                         ?>       
-                            <div>
-				<img src="<?= base_url() ?>/images/pass.jpg" alt="" width="40%">
-				<?php echo $this->session->userdata('first_name'); ?> <?php echo $this->session->userdata('last_name'); ?>
+         <div>
+          My Profile:  <strong><?php echo $this->session->userdata('first_name'); ?> <?php echo $this->session->userdata('last_name'); ?></strong>
+				<img src="<?= base_url() ?>/images/pass.jpg" alt="" width="50%" class="img-rounded" style="border:1px solid #ccc ;">
+			
                             </div>
-        <ul class="list-unstyled" >
+                            <hr>
+        <ul class="list-unstyled" style="" >
 			    <div>
-				<li><a href="<?= base_url() ?>orders/all_orders" class="">Public Orders</a></li>
+				<li style="border-bottom:3px solid #ccc;"><a href="<?= base_url() ?>orders/all_orders" style="color:#34a527">Public Orders</a></li>
 			    </div>
 			    <div>
-				<li><a href="<?= base_url() ?>orders/load_orders/<?php echo 1; ?>" class="">Applied Public Orders(<?php echo $public; ?>)</a></li>
+				<li style="border-bottom:3px solid #ccc"><a href="<?= base_url() ?>orders/load_orders/<?php echo 1; ?>" style="color:#34a527">Applied Public Orders(<?php echo $public; ?>)</a></li>
 			    </div>
 			    <?php if($this->session->userdata('groupid')==2){ ?>
 			    <div>
-				<li><a href="<?= base_url() ?>orders/load_orders" class="">Private Orders(<?php 
+				<li style="border-bottom:3px solid #ccc"><a href="<?= base_url() ?>orders/load_orders" style="color:#34a527">Private Orders(<?php 
 				
 				?>)</a></li>
 			    </div>
 			    <?php } ?>
 			    <div>
-				<li><a href="<?= base_url() ?>orders/load_orders/2" class="">Submitted Orders(<?php echo $submited; ?>)</a></li>
+				<li style="border-bottom:3px solid #ccc"><a href="<?= base_url() ?>orders/load_orders/2" style="color:#34a527">Submitted Orders(<?php echo $submited; ?>)</a></li>
 			 
-				<li><a href="<?= base_url() ?>orders/load_orders/4" class="">Revision Orders(<?php echo $revision; ?>)</a></li>
+				<li style="border-bottom:3px solid #ccc"><a href="<?= base_url() ?>orders/load_orders/4" style="color:#34a527">Revision Orders(<?php echo $revision; ?>)</a></li>
 			    </div>
 			    <?php if($this->session->userdata('groupid')==3 or $this->session->userdata('groupid')==4){ ?>
 			    <div>
-				<li><a href="<?= base_url() ?>orders/load_orders/7" class="">Resubmited For Revision Orders(<?php echo $resubmition; ?>)</a></li>
+				<li style="border-bottom:3px solid #ccc"><a href="<?= base_url() ?>orders/load_orders/7" style="color:#34a527">Resubmited For Revision Orders(<?php echo $resubmition; ?>)</a></li>
 			    </div>
 			    <?php } ?>
 			    <div>
-				<li><a href="<?= base_url() ?>orders/load_orders/3" class="">Approved Orders(<?php echo $approved; ?>)</a></li>
+				<li style="border-bottom:3px solid #ccc"><a href="<?= base_url() ?>orders/load_orders/3" style="color:#34a527">Approved Orders(<?php echo $approved; ?>)</a></li>
 			    </div>
 			    <div>
-				<li><a href="<?= base_url() ?>orders/load_orders/5/6" class="">Archived Orders(<?php echo ($accepted+$rejected); ?>)</a></li>
+				<li style="border-bottom:3px solid #ccc"><a href="<?= base_url() ?>orders/load_orders/5/6" style="color:#34a527">Archived Orders(<?php echo ($accepted+$rejected); ?>)</a></li>
 			    </div>
 			    <div>
-				<li><a href="<?= base_url() ?>payout/pre" class="">Payments</a></li>
-			    </div>
-			    <div>
-        <li><a href="<?= base_url() ?>profile/profile" class="">Profile</a></li>
+        <li style="border-bottom:3px solid #ccc"><a href="<?= base_url() ?>Payout/pre" style="color:#34a527">Payments</a></li>
           </div>
           <div>
-				<li><a href="<?= base_url() ?>progress/index" class="">Progress</a></li>
+				<li style="border-bottom:3px solid #ccc"><a href="<?= base_url() ?>Payout/withdrawal" style="color:#34a527">Transaction Statement</a></li>
+			    </div>
+			    <div>
+        <li style="border-bottom:3px solid #ccc"><a href="<?= base_url() ?>auth/change_password" style="color:#34a527">Profile</a></li>
+          </div>
+          <div>
+				<li style="border-bottom:3px solid #ccc"><a href="<?= base_url() ?>progress/index" style="color:#34a527">Progress</a></li>
 			    </div> 
 			    <div>
-				<li><a href="<?= base_url() ?>orders/ratings" class="">Rating:<?php if(!empty($ratings)){ echo $rate->rate; } ?></a></li>
+				<li style="border-bottom:3px solid #ccc"><a href="<?= base_url() ?>orders/ratings" style="color:#34a527">Rating:<?php if(!empty($ratings)){ echo $rate->rate; } ?></a></li>
 			    </div>
           </ul>
                             
@@ -119,10 +119,7 @@
 
               </div>
               
-              <!--<div class="col-md-3">
-
-
-              </div>-->
+       
             </div>
           </div>
         </div>  
@@ -221,7 +218,6 @@
       });
    });
 </script>
-
 </body>
 
 </html>
