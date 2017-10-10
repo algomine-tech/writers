@@ -36,14 +36,14 @@ $payouts = new \PayPal\Api\Payout();
 $senderBatchHeader = new \PayPal\Api\PayoutSenderBatchHeader();
 // ### NOTE:
 // You can prevent duplicate batches from being processed. If you specify a `sender_batch_id` that was used in the last 30 days, the batch will not be processed. For items, you can specify a `sender_item_id`. If the value for the `sender_item_id` is a duplicate of a payout item that was processed in the last 30 days, the item will not be processed.
-$clientId = 'ASMoCRbI0-wS52QLMv93SMdwAZ3J_-Tb8bwErit7Oxh5eCUZhFQJpEbK36kHxM--piO_AZVhdUzahuHE';
-$clientSecret = 'EGcLOayoT6W0Lxyd_MkbNMfmAeXpC-cDzuPOS25rH9PgjXiLLelDxoVtdd0pFRwrqrUbo5BWKwe_YSIF';
-$apiContext = new \PayPal\Rest\ApiContext(
-    new \PayPal\Auth\OAuthTokenCredential(
-        $clientId,
-        $clientSecret
-    )
-);
+// $clientId = 'ASMoCRbI0-wS52QLMv93SMdwAZ3J_-Tb8bwErit7Oxh5eCUZhFQJpEbK36kHxM--piO_AZVhdUzahuHE';
+// $clientSecret = 'EGcLOayoT6W0Lxyd_MkbNMfmAeXpC-cDzuPOS25rH9PgjXiLLelDxoVtdd0pFRwrqrUbo5BWKwe_YSIF';
+// $apiContext = new \PayPal\Rest\ApiContext(
+//     new \PayPal\Auth\OAuthTokenCredential(
+//         $clientId,
+//         $clientSecret
+//     )
+// );
 // #### Batch Header Instance
 $senderBatchHeader->setSenderBatchId(uniqid())
     ->setEmailSubject("You have a Payout from your writers Account");
@@ -52,7 +52,7 @@ $senderBatchHeader->setSenderBatchId(uniqid())
 // Please note that if you are using single payout with sync mode, you can only pass one Item in the request
 $senderItem = new \PayPal\Api\PayoutItem();
 $senderItem->setRecipientType('Email')
-    ->setNote('Withdraw money Your Account!')
+    ->setNote('Withdraw money from your Account!')
     ->setReceiver($EMAIL_paypal)
     ->setAmount(new \PayPal\Api\Currency('{
                         "value":"'.$AMOUNT.'",
@@ -76,6 +76,6 @@ try {
 }
 
 // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
-// ResultPrinter::printResult("Created Single Synchronous Payout", "Payout", $output->getBatchHeader()->getPayoutBatchId(), $request, $output);
+ResultPrinter::printResult("Created Single Synchronous Payout", "Payout", $output->getBatchHeader()->getPayoutBatchId(), $request, $output);
 
 return $output;

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Auth extends CI_Controller {
+class Auth extends MY_Controller {
 
 	public function __construct()
 	{
@@ -19,6 +19,11 @@ class Auth extends CI_Controller {
 	public function index()
 	{
 
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}else{
 			// set the flash data error message if there is one
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
@@ -29,7 +34,8 @@ class Auth extends CI_Controller {
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
             
-			$this->render_page('theme/auth/index', $this->data);
+			$this->front_page('theme/auth/index', $this->data);
+		}
 	}
 
 
@@ -70,7 +76,7 @@ class Auth extends CI_Controller {
 				//if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('auth/dashboard', 'refresh');
+				redirect('orders/index', 'refresh');
 			}
 			else
 			{
@@ -91,7 +97,7 @@ class Auth extends CI_Controller {
 				'type'  => 'text',
 				'value' => $this->form_validation->set_value('identity'),
 				'class'=>'form-control',
-				'placeholder'=> 'username'
+				'placeholder'=> 'Email Address'
 			);
 			$this->data['password'] = array('name' => 'password',
 				'id'   => 'password',
@@ -100,7 +106,7 @@ class Auth extends CI_Controller {
 				'placeholder'=>'password'
 			);
 
-			$this->load->view('theme/auth/login', $this->data);
+			$this->front_page('theme/auth/login', $this->data);
 		}
 	}
 
@@ -913,20 +919,5 @@ class Auth extends CI_Controller {
 		}
 	}
 
-        public function render_page($view, $data=null, $returnhtml=false)//I think this makes more sense
-    {
 
-        $this->viewdata = (empty($data)) ? $this->data: $data;
-
-       
-        $this->load->view('theme/header');
-        //$this->load->view('theme/sidebar');
-        $this->load->view($view, $this->viewdata, $returnhtml);
-        $this->load->view('theme/footer');
-    
-    }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

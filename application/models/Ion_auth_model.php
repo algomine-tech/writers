@@ -957,11 +957,15 @@ class Ion_auth_model extends CI_Model
 
 		$this->trigger_events('extra_where');
 
-		$query = $this->db->select($this->identity_column . ', email, id, password, active,first_name,last_name,last_login')
+		$query = $this->db->select($this->identity_column . ', email, users.id, password, active,first_name,last_name,last_login,users_groups.group_id as groupid')
 		                  ->where($this->identity_column, $identity)
+		                  ->from('users')
+		                  ->join('users_groups','users_groups.user_id=users.id','left')
 		                  ->limit(1)
-		    			  ->order_by('id', 'desc')
-		                  ->get($this->tables['users']);
+		    			  ->order_by('users.id', 'desc')
+		                 ->get();
+
+		//$query = $this->db->query("select $this->identity_column , email, users.id, password, active,first_name,last_name,last_login,users_groups.group_id groupid from users left join users_groups on users_groups.user_id=users.id where $this->identity_column='$identity'");
 
 		if($this->is_time_locked_out($identity))
 		{
@@ -989,8 +993,9 @@ class Ion_auth_model extends CI_Model
 
 					return FALSE;
 				}
-
+               
 				$this->set_session($user);
+				$this->session->set_userdata('groupid',$user->groupid);
 
 				$this->update_last_login($user->id);
 

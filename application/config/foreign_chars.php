@@ -100,8 +100,5 @@ $foreign_characters = array(
 	'/ю/' => 'yu',
 	'/Я/' => 'Ya',
 	'/я/' => 'ya'
-<<<<<<< HEAD
+
 );
-=======
-);
->>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124

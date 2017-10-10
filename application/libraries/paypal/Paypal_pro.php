@@ -31,16 +31,13 @@
 class PayPal_Pro
 {
 
-<<<<<<< HEAD
 	var $APIUsername = 'oscarsalu-facilitator_api1.gmail.com
 ';
 	var $APIPassword = 'VGLGDQZPK6CAGUWK';
 	var $APISignature = 'AFcWxV21C7fd0v3bYYYRCpSSRl31A3zmQrGeBJX9GDCHAAm.H7hCm04o';
-=======
 	var $APIUsername = '';
 	var $APIPassword = '';
 	var $APISignature = '';
->>>>>>> ffebc9484da23475dec76c9f18c3edc5716e2124
 	var $APISubject = '';
 	var $APIVersion = '';
 	var $APIMode = '';
@@ -1385,18 +1382,6 @@ class PayPal_Pro
 		else
 		{
 			$SkipDetailsOption = 'useraction=continue';
-		}
-		
-		// Survey Choices
-		$SurveyChoices = isset($DataArray['SurveyChoices']) ? $DataArray['SurveyChoices'] : array();
-		if($SECFields['surveyquestion'] != '')
-		{
-			$n = 0;
-			foreach($SurveyChoices as $SurveyChoice)
-			{
-				$SurveyChoicesNVP .= $SurveyChoice != '' ? '&' . 'L_SURVEYCHOICE' . $n . '=' . urlencode($SurveyChoice) : '';
-				$n++;	
-			}
 		}
 		
 		// Payment Details Type Fields

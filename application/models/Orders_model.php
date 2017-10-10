@@ -37,9 +37,14 @@ public function getEditor_A_Order($where){
 return $this->db->query("select * from editoraorders $where");
 }
 
+public function getEditor_B_Order($where){ 
+//get Orders for a specific writer	
+return $this->db->query("select * from editor_b_orders $where");
+}
+
 public function save_writerorder_application($data){
 //save an application by writter
-$this->db->insert('writerorders', $data);
+return $this->db->insert('writerorders', $data);
 }
 
 public function save_editor_A_order_application($data){
@@ -49,32 +54,37 @@ return $this->db->insert('editoraorders',$data);
 
 public function save_editor_B_order_application($data){
 //Save application by Editor B
-$this->db->insert('editor_b_orders',$data);
+return $this->db->insert('editor_b_orders',$data);
 }
 
 public function getWriterOrders(){ 
 //getting Orders that have been Submitted by writers but not yet taken by any Editor A	
 //for editor A dashbord
-return $this->db->query("select writerorders.*,orders.id orderid,orders.deadline,orders.amount orderamount,ss.username client,sss.username writer,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at from writerorders left join orders on orders.id=writerorders.orderid left join users ss on ss.id=orders.user_id left join users sss on sss.id=writerorders.userid left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id where writerorders.id not in(select writerorderid from editoraorders) and writerorders.orderstatusid=2");
+return $this->db->query("select writerorders.*,orders.id orderid,orders.writer_level_id,orders.deadline,orders.amount orderamount,ss.username client,sss.username writer,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at,writer_levels.name levelname from writerorders left join orders on orders.id=writerorders.orderid left join users ss on ss.id=orders.user_id left join users sss on sss.id=writerorders.userid left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id left join writer_levels on writer_levels.id=orders.writer_level_id where writerorders.id not in(select writerorderid from editoraorders) and writerorders.orderstatusid=2");
 }
 
 public function getEditor_A_Orders(){
 //get Orders that have been submitted by Editor A but not Yet taken By any Editor B 
 //This is For Editor B dashbord
-return $this->db->query("select editoraorders.*,orders.id orderid,ss.username client,sss.username writer,ssss.username editor_A,orders.deadline,orders.amount orderamount,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at from editoraorders left join writerorders on writerorders.id=editoraorders.writerorderid left join orders on orders.id=writerorders.orderid left join users ss on ss.id=orders.user_id left join users sss on sss.id=writerorders.userid left join users ssss on ssss.id=editoraorders.userid left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id where editoraorders.id not in(select editorordersid from editor_b_orders) and editoraorders.orderstatusid=2");
+return $this->db->query("select editoraorders.*,orders.id orderid,orders.writer_level_id,ss.username client,sss.username writer,ssss.username editor_A,orders.deadline,orders.amount orderamount,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at,writer_levels.name levelname from editoraorders left join writerorders on writerorders.id=editoraorders.writerorderid left join orders on orders.id=writerorders.orderid left join users ss on ss.id=orders.user_id left join users sss on sss.id=writerorders.userid left join users ssss on ssss.id=editoraorders.userid left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id left join writer_levels on writer_levels.id=orders.writer_level_id where editoraorders.id not in(select editorordersid from editor_b_orders) and editoraorders.orderstatusid=2");
 
 }
 
 public function getWriterOrders_By_Orderstatus($where){ 
 //getting Orders that have been Submitted by writers but not yet taken by any Editor A	
 //for editor A dashbord
-return $this->db->query("select writerorders.*,orders.id orderid,orders.deadline,orders.amount orderamount,ss.username client,sss.username writer,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at from writerorders left join orders on orders.id=writerorders.orderid left join users ss on ss.id=orders.user_id left join users sss on sss.id=writerorders.userid left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id $where");
+return $this->db->query("select writerorders.*,orders.id orderid,orders.writer_level_id,orders.deadline,orders.amount orderamount,ss.username client,sss.username writer,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at from writerorders left join orders on orders.id=writerorders.orderid left join users ss on ss.id=orders.user_id left join users sss on sss.id=writerorders.userid left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id $where");
 }
 
 public function getEditor_A_Order_By_Orderstatus($where){ 
 //getting Orders that have been Submitted by writers but not yet taken by any Editor A	
 //for editor A dashbord
 return $this->db->query("select editoraorders.*,orders.id orderid,orders.deadline,orders.amount orderamount,ss.username client,sss.username writer,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at from editoraorders left join writerorders on writerorders.id=editoraorders.writerorderid left join orders on orders.id=writerorders.orderid left join users ss on ss.id=orders.user_id left join users sss on sss.id=editoraorders.userid left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id $where");
+}
+public function getEditor_B_Order_By_Orderstatus($where){ 
+//getting Orders that have been Submitted by writers but not yet taken by any Editor A	
+//for editor B dashbord
+return $this->db->query("select editor_b_orders.*,orders.id orderid,orders.deadline,orders.amount orderamount,ss.username client,sss.username writer,papers.topic,papers.pages,subjects.name subject,paper_types.name papertype,papers.num_cited_resources, citation_formats.name as citationformat,papers.paper_instructions,papers.created_at from editor_b_orders left join editoraorders on editoraorders.id=editor_b_orders.editorordersid left join writerorders on writerorders.id=editoraorders.writerorderid left join orders on orders.id=writerorders.orderid left join users ss on ss.id=orders.user_id left join users sss on sss.id=editor_b_orders.userid left join papers on papers.order_id=orders.id left join subjects on subjects.id=papers.subject_id left join paper_types on paper_types.id=papers.paper_type_id left join citation_formats on citation_formats.id=papers.citation_format_id $where");
 }
 
 public function add_ordertrack($data){
@@ -102,7 +112,7 @@ $this->db->query("update editoraorders set orderstatusid='$orderstatusid' $where
 public function change_editor_B_Order_status($orderstatusid,$where)
 {
 //update Status in editor B orders table
-$this->db->query("update editoraorders set orderstatusid='$orderstatusid' $where");
+$this->db->query("update editor_b_orders set orderstatusid='$orderstatusid' $where");
 }
 
 public function add_Rating($data){
@@ -158,15 +168,15 @@ return $this->db->query("select ratings.*,users.username,papers.topic,ratingpara
 }
 
 public function Lock_table_writerorders(){
-$this->db->query("LOCK TABLE writerorders WRITE");
+$this->db->query("LOCK TABLE writerorders WRITE,orders READ,papers READ,subjects READ,paper_types READ,citation_formats READ,users READ,writer_levels READ");
 }
 
 public function Lock_table_editoraorders(){
-$this->db->query("LOCK TABLE editoraorders WRITE");
+$this->db->query("LOCK TABLE editoraorders WRITE,orders READ,papers READ,subjects READ,paper_types READ,citation_formats READ,users READ,writer_levels READ,writerorders READ");
 }
 
 public function Lock_table_editor_B_orders(){
-$this->db->query("LOCK TABLE editor_b_orders WRITE");
+$this->db->query("LOCK TABLE editor_b_orders WRITE,orders READ,papers READ,subjects READ,paper_types READ,citation_formats READ,users READ,writer_levels READ,writerorders READ, editoraorders READ");
 }
 
 public function Un_Lock_tables(){

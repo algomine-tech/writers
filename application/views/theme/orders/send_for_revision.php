@@ -57,7 +57,8 @@
 		                   $endtime=$start+$inter;
 		            }
 		            $deadline=date("Y-m-d h:i:s",$endtime);
-                 ?>
+
+		            ?>
                     <!-- item list -->
                     <div class="item">
                       <div class="row">
@@ -80,7 +81,7 @@
                             <form method="post" action="<? echo base_url() ?>orders/save_paper_for_revision" enctype="multipart/form-data" />
 				  <div class="span12 field-box">
 				      <input type="hidden" name="orderid" id="orderid" value="<?php echo $row->orderid; ?>">
-				      <input type="hidden" name="rating" value="<?php echo $rate->rate; ?>">
+				      <input type="hidden" name="rating" value="<?php foreach ($ratings as $rate ){}; echo $rate->rate; ?>">
 				      <input type="hidden" name="levelid" value="<?php echo $row->writer_level_id; ?>">
 				      <input type="file" name="userfile" id="userfile" value="<?php echo set_value('userfile'); ?>">
 				      <span class="alert-msg  error"><?php echo form_error('userfile');  ?></span>

@@ -4,23 +4,35 @@
 
       <!-- body-content -->
       <div class="body-content clearfix" >
-
+         <div class="bg-color2 block-section-xs line-bottom">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 hidden-xs">
+                <div>Applied Public Orders :</div>
+              </div>
+              <div class="col-sm-6">
+                <div class="text-right"><a href="<?= site_url('orders/all_orders'); ?>">&laquo; Go back to public orders</a></div>
+              </div>
+            </div>
+          </div>
+        </div><!-- end top link -->
         <div class="bg-color2">
           <div class="container">
             <div class="row">
               <div class="col-md-9">
-
+            
                 <!-- box listing -->
-                <div class="block-section-sm box-list-area">
+                <div class="block-section-sm ">
                   <div class="box-list">                  
                     <!-- item list -->
-                    <div class="item">
-                      <div class="row">
-                        <div class="col-md-1 hidden-sm hidden-xs"><div class="img-item"><img src="./assets/theme/images/company-logo/4.jpg" alt=""></div></div>
-                        <div class="col-md-11">
-                           <table class="table table-striped table-bordered bootstrap-datatable datatable" id="example">
-				  <thead>
-				      <tr>
+                    <div class="panel panel-default">
+                      <div class=" panel-heading">
+                        <strong> Work Diary </strong>
+                        </div>
+                        <div class="panel-body">
+                    <table class="table  table-bordered datatable" >
+				    <thead>
+				     <tr>
 					<th>TOPIC</th>
 					<th>CREATED BY</th>
 					<th>FILE</th>
@@ -52,13 +64,16 @@
                          
                            		
                         </div>
+                        <div class="panel-footer">
+                           <p style="color:#ccc">All Submissions</p>
+                        </div>
                       </div>
                     </div><!-- end item list -->
                   </div>
                 </div><!-- end box listing -->
 
 
-              </div>
+             
 
 
       
